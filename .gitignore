@@ -1,0 +1,6 @@
+/target
+*.vscode
+*.vim
+test/
+fs_map
+input/
