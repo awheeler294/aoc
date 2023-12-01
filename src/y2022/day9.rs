@@ -39,7 +39,7 @@ fn count_tail_visited(motions: &[&str], rope_length: usize) -> usize {
 
             for i in 1..rope.len() {
                 let head = *rope.get_mut(i - 1).unwrap();
-                let mut tail = rope.get_mut(i).unwrap();
+                let tail = rope.get_mut(i).unwrap();
                 loop {
                     // println!();
                     // dbg!(&head);
