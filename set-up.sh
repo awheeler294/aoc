@@ -11,7 +11,6 @@ pushd $HOME/workspace/aoc-rs/
 inputs_dir="input/$year/"
 mkdir -p "$inputs_dir"
 
-# curl 'https://adventofcode.com/2022/day/1/input' \
 curl https://adventofcode.com/"$year"/day/"$day"/input \
   -H 'authority: adventofcode.com' \
   -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
