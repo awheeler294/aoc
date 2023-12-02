@@ -6,7 +6,7 @@ year=$1
 day=$2
 session="53616c7465645f5f204d2a879a30f31bb9520ac35cc9682819f5b6cbd3e4d42672ec52ad0a80661aa18b782a956b3a4d6d813798e071612a8080d73892314a0a"
 
-pushd $HOME/workspace/aoc-rs/
+pushd $HOME/workspace/aoc/
 
 inputs_dir="input/$year/"
 mkdir -p "$inputs_dir"
