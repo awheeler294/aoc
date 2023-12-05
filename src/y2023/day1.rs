@@ -33,7 +33,6 @@ fn part2(input: &[&str]) -> u32 {
 }
 
 fn parse_first_and_last_digit(line: &str) -> (u32, u32) {
-    
     let first = 'scope: {
         let mut end = 1;
         loop {
@@ -75,7 +74,6 @@ fn parse_first_and_last_digit(line: &str) -> (u32, u32) {
     };
 
     (first, last)
-
 }
 
 fn parse_word_digit(input: &str) -> Option<u32> {
@@ -120,7 +118,7 @@ mod tests {
         let input = "two1nine";
         let expected = (2, 9);
         let actual = parse_first_and_last_digit(&input);
-       assert_eq!(actual, expected);
+        assert_eq!(actual, expected);
     }
 
     #[test]
@@ -194,5 +192,4 @@ mod tests {
 
         assert_eq!(actual, expected);
     }
-
 }

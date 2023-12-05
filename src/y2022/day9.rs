@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::grid::Point;
+use crate::grid_v1::Point;
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = count_tail_visited(input, 2);

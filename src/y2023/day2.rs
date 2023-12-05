@@ -89,7 +89,7 @@ impl From<&str> for GameRecord {
     fn from(input: &str) -> Self {
         let mut id = 0;
         let mut counts = Vec::new();
-        
+
         let mut input_iter = input.split(' ');
 
         let mut red = 0;
@@ -105,16 +105,29 @@ impl From<&str> for GameRecord {
                     id = id_token
                         .strip_suffix(':')
                         .expect("Error parsing ':' from `{id_token}`")
-                        .parse::<usize>().expect("Could not parse `{s}` as usize");
-                },
+                        .parse::<usize>()
+                        .expect("Could not parse `{s}` as usize");
+                }
 
-                "red" => red = prev_token.parse::<usize>().expect("Could not parse `{prev_token}` as usize"),
+                "red" => {
+                    red = prev_token
+                        .parse::<usize>()
+                        .expect("Could not parse `{prev_token}` as usize")
+                }
 
-                "green" => green = prev_token.parse::<usize>().expect("Could not parse `{prev_token}` as usize"),
+                "green" => {
+                    green = prev_token
+                        .parse::<usize>()
+                        .expect("Could not parse `{prev_token}` as usize")
+                }
 
-                "blue" => blue = prev_token.parse::<usize>().expect("Could not parse `{prev_token}` as usize"),
+                "blue" => {
+                    blue = prev_token
+                        .parse::<usize>()
+                        .expect("Could not parse `{prev_token}` as usize")
+                }
 
-                _ => {},
+                _ => {}
             };
 
             if token.ends_with(";") {
@@ -129,8 +142,6 @@ impl From<&str> for GameRecord {
         Self { id, counts }
     }
 }
-
-
 
 #[cfg(test)]
 mod tests {
@@ -167,6 +178,5 @@ mod tests {
         let actual = calculate_power(&input);
 
         assert_eq!(actual, expected);
-
     }
 }

@@ -1,4 +1,4 @@
-use crate::grid::{Grid, GridDirections, Point};
+use crate::grid_v1::{Grid, GridDirections, Point};
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = drop_sand(input);

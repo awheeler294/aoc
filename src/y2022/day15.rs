@@ -1,4 +1,4 @@
-use crate::grid::Point;
+use crate::grid_v1::Point;
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = count_exclusions(input, 2_000_000);

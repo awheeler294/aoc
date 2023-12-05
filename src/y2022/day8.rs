@@ -1,4 +1,4 @@
-use crate::grid::{Grid, GridDirections};
+use crate::grid_v1::{Grid, GridDirections};
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = count_visible(input);
