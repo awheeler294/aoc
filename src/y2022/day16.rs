@@ -141,7 +141,8 @@ mod tests {
         );
     }
 
-    // #[test]
+    #[test]
+    #[ignore = "Run Time"]
     fn test_find_max_flow_rate() {
         let input = [
             "Valve AA has flow rate=0; tunnels lead to valves BB",

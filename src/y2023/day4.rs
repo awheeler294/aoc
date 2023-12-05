@@ -1,4 +1,4 @@
-use std::{collections::HashMap, ops::Index, usize};
+use std::{collections::HashMap, usize};
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = score_cards(input);

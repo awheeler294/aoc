@@ -145,9 +145,8 @@ mod tests {
     }
 
     #[test]
+    #[ignore = "TODO"]
     fn test_maximize_happiness() {
-        //TODO
-        return;
         let input = vec![
             "Alice would gain 54 happiness units by sitting next to Bob.",
             "Alice would lose 79 happiness units by sitting next to Carol.",

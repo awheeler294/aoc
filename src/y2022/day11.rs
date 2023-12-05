@@ -255,53 +255,6 @@ mod tests {
         );
     }
 
-    // #[test]
-    fn test_monkey_get_throws() {
-        let mut monkey_0 = Monkey::new(&[79, 98], '*', Some(19), 23, 2, 3);
-
-        let actual = monkey_0.get_throws(3, 23);
-        let expected = vec![(3, 500), (3, 620)];
-
-        assert_eq!(
-            actual, expected,
-            "\n Got {:#?} when expecting {:#?} from calling get_throws on monkey_0",
-            actual, expected
-        );
-
-        let mut monkey_1 = Monkey::new(&[54, 65, 75, 74], '+', Some(6), 19, 2, 0);
-
-        let actual = monkey_1.get_throws(3, 1);
-        let expected = vec![(0, 20), (0, 23), (0, 27), (0, 26)];
-
-        assert_eq!(
-            actual, expected,
-            "\n Got {:#?} when expecting {:#?} from calling get_throws on monkey_1",
-            actual, expected
-        );
-
-        let mut monkey_2 = Monkey::new(&[79, 60, 97], '*', None, 13, 1, 3);
-
-        let actual = monkey_2.get_throws(3, 1);
-        let expected = vec![(1, 2080), (3, 1200), (3, 3136)];
-
-        assert_eq!(
-            actual, expected,
-            "\n Got {:#?} when expecting {:#?} from calling get_throws on monkey_2",
-            actual, expected
-        );
-
-        let mut monkey_3 = Monkey::new(&[74], '+', Some(3), 17, 0, 1);
-
-        let actual = monkey_3.get_throws(3, 1);
-        let expected = vec![(1, 25)];
-
-        assert_eq!(
-            actual, expected,
-            "\n Got {:#?} when expecting {:#?} from calling get_throws on monkey_3",
-            actual, expected
-        );
-    }
-
     #[test]
     fn test_parse_monkeys() {
         let input = [
