@@ -4,7 +4,7 @@ IFS=$'\n\t'
 
 year=$1
 day=$2
-session="53616c7465645f5f204d2a879a30f31bb9520ac35cc9682819f5b6cbd3e4d42672ec52ad0a80661aa18b782a956b3a4d6d813798e071612a8080d73892314a0a"
+session="$AOC_SESSION"
 
 pushd $HOME/workspace/aoc/
 
@@ -19,16 +19,12 @@ curl https://adventofcode.com/"$year"/day/"$day"/input \
   -H "cookie: session=$session" \
   -H 'dnt: 1' \
   -H "referer: https://adventofcode.com/$year/day/$day" \
-  -H 'sec-ch-ua: "Chromium";v="106", "Not;A=Brand";v="99"' \
-  -H 'sec-ch-ua-mobile: ?0' \
-  -H 'sec-ch-ua-platform: "Linux"' \
   -H 'sec-fetch-dest: document' \
   -H 'sec-fetch-mode: navigate' \
   -H 'sec-fetch-site: same-origin' \
   -H 'sec-fetch-user: ?1' \
   -H 'sec-gpc: 1' \
   -H 'upgrade-insecure-requests: 1' \
-  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36' \
   --compressed \
   -o "$inputs_dir"/day"$day"
 
