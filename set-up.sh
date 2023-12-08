@@ -32,13 +32,18 @@ curl https://adventofcode.com/"$year"/day/"$day"/input \
   --compressed \
   -o "$inputs_dir"/day"$day"
 
-for d in {1..25}
-do
-   src_dir="src/y$year"
-   src_file="$src_dir/day$d.rs"
-   if [ ! -f "$src_file" ]; then
-      mkdir -p "$src_dir"
-      cat > "$src_file" << EOF
+src_dir="src/y$year"
+if [ ! -d "$src_dir" ]
+then
+
+   mkdir -p "$src_dir"
+
+   for d in {1..25}
+   do
+      src_file="$src_dir/day$d.rs"
+      if [ ! -f "$src_file" ]
+      then
+         cat > "$src_file" << EOF
 pub fn solve(_input: &[&str]) -> String {
     let part1 = "";
     let part2 = "";
@@ -49,7 +54,7 @@ pub fn solve(_input: &[&str]) -> String {
 #[cfg(test)]
 mod tests {
     
-    use super::*;
+    // use super::*;
 
     #[test]
     fn test_solve() {
@@ -57,7 +62,8 @@ mod tests {
     }
 }
 EOF
-   fi
-done
+      fi
+   done
+fi
 
 popd
