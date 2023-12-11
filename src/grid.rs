@@ -173,6 +173,91 @@ where
         None
     }
 
+    pub fn get_mut(&mut self, point: &Point) -> Option<&mut T> {
+        if self.is_in_bounds(point) {
+            let y_part = point.y * self.width;
+            self.spaces.get_mut(y_part + point.x)
+        } else {
+            None
+        }
+    }
+
+    pub fn get_direction_mut(&mut self, point: &Point, direction: GridDirection) -> Option<&mut T> {
+        if let Some((_, value)) = self.enumerate_direction_mut(point, direction) {
+            return Some(value);
+        }
+
+        None
+    }
+
+    pub fn enumerate_direction_mut(
+        &mut self,
+        point: &Point,
+        direction: GridDirection,
+    ) -> Option<(Point, &mut T)> {
+        if self.is_in_bounds(point) {
+            let d_point = match direction {
+                GridDirection::Up => {
+                    let y = point.y.checked_sub(1)?;
+
+                    Point::new(point.x, y)
+                }
+
+                GridDirection::Down => {
+                    let y = point.y.checked_add(1)?;
+
+                    Point::new(point.x, y)
+                }
+
+                GridDirection::Left => {
+                    let x = point.x.checked_sub(1)?;
+
+                    Point::new(x, point.y)
+                }
+
+                GridDirection::Right => {
+                    let x = point.x.checked_add(1)?;
+
+                    Point::new(x, point.y)
+                }
+
+                GridDirection::UpLeft => {
+                    let x = point.x.checked_sub(1)?;
+                    let y = point.y.checked_sub(1)?;
+
+                    Point::new(x, y)
+                }
+
+                GridDirection::UpRight => {
+                    let x = point.x.checked_add(1)?;
+                    let y = point.y.checked_sub(1)?;
+
+                    Point::new(x, y)
+                }
+
+                GridDirection::DownLeft => {
+                    let x = point.x.checked_sub(1)?;
+                    let y = point.y.checked_add(1)?;
+
+                    Point::new(x, y)
+                }
+
+                GridDirection::DownRight => {
+                    let x = point.x.checked_add(1)?;
+                    let y = point.y.checked_add(1)?;
+
+                    Point::new(x, y)
+                }
+            };
+
+            if let Some(value) = self.get_mut(&d_point) {
+                return Some((d_point, value));
+            }
+        }
+
+        None
+    }
+
     pub fn set_at(&mut self, x: usize, y: usize, val: T) -> Result<()> {
         let to_modify = self.spaces.get_mut(y * self.width + x).ok_or_else(|| {
             anyhow!("Grid::set_at: x: `{x}`, y: `{y}` is outside the bounds of grid.")
@@ -275,17 +360,21 @@ where
         Ok(())
     }
 
-    pub fn find(&self, to_find: T) -> Option<Point> {
+    pub fn find_fn<F: Fn(&T) -> bool>(&self, to_find: F) -> Option<Point> {
         let mut location = None;
 
         for (i, space) in self.spaces.iter().enumerate() {
-            if *space == to_find {
+            if to_find(space) {
                 location = Some(self.idx_point(i));
                 break;
             }
         }
 
         location
+    }
+
+    pub fn find(&self, to_find: T) -> Option<Point> {
+        self.find_fn(|e| *e == to_find)
     }
 }
 
