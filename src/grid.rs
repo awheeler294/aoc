@@ -1,6 +1,6 @@
 use anyhow::{anyhow, Result};
 use std::cmp::{max, min};
-use std::ops::Deref;
+use std::ops::{Deref, DerefMut};
 use std::{collections::HashSet, fmt};
 
 #[derive(Debug, PartialEq, Eq, Hash, Copy, Clone)]
@@ -15,7 +15,7 @@ impl Point {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Copy, Clone)]
+#[derive(Debug, PartialEq, Eq, Copy, Clone, Hash)]
 pub enum GridDirection {
     Up,
     Down,
@@ -97,8 +97,25 @@ where
         }
     }
 
+    pub fn get_mut(&mut self, point: &Point) -> Option<&mut T> {
+        if self.is_in_bounds(point) {
+            let y_part = point.y * self.width;
+            self.spaces.get_mut(y_part + point.x)
+        } else {
+            None
+        }
+    }
+
     pub fn get_direction(&self, point: &Point, direction: GridDirection) -> Option<&T> {
         if let Some((_, value)) = self.enumerate_direction(point, direction) {
+            return Some(value);
+        }
+
+        None
+    }
+
+    pub fn get_direction_mut(&mut self, point: &Point, direction: GridDirection) -> Option<&mut T> {
+        if let Some((_, value)) = self.enumerate_direction_mut(point, direction) {
             return Some(value);
         }
 
@@ -168,23 +185,6 @@ where
             if let Some(value) = self.get(&d_point) {
                 return Some((d_point, value));
             }
-        }
-
-        None
-    }
-
-    pub fn get_mut(&mut self, point: &Point) -> Option<&mut T> {
-        if self.is_in_bounds(point) {
-            let y_part = point.y * self.width;
-            self.spaces.get_mut(y_part + point.x)
-        } else {
-            None
-        }
-    }
-
-    pub fn get_direction_mut(&mut self, point: &Point, direction: GridDirection) -> Option<&mut T> {
-        if let Some((_, value)) = self.enumerate_direction_mut(point, direction) {
-            return Some(value);
         }
 
         None
@@ -400,6 +400,12 @@ impl<T> Deref for Grid<T> {
 
     fn deref(&self) -> &Self::Target {
         &self.spaces
+    }
+}
+
+impl<T> DerefMut for Grid<T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.spaces
     }
 }
 
