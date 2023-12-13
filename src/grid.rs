@@ -13,6 +13,11 @@ impl Point {
     pub fn new(x: usize, y: usize) -> Self {
         Self { x, y }
     }
+
+    pub fn manhattan_distance(&self, other: Point) -> usize {
+        (max(self.x, other.x) - min(self.x, other.x))
+            + (max(self.y, other.y) - min(self.y, other.y))
+    }
 }
 
 #[derive(Debug, PartialEq, Eq, Copy, Clone, Hash)]
@@ -509,6 +514,44 @@ mod tests {
             let actual = grid.get_direction(&point, direction);
 
             assert_eq!(actual, expected.as_ref(), "Got {actual:?} when expecting {expected:?} from calling get_direction with point {point:?} and direction {direction:?}");
+        }
+    }
+
+    #[test]
+    fn test_point_manhattan_distance() {
+        let cases = [
+            (Point::new(9, 16), Point::new(0, 16), 9),
+            (Point::new(13, 2), Point::new(15, 3), 3),
+            (Point::new(12, 14), Point::new(10, 16), 4),
+            (Point::new(10, 20), Point::new(10, 16), 4),
+            (Point::new(14, 17), Point::new(10, 16), 5),
+            (Point::new(8, 7), Point::new(2, 10), 9),
+            (Point::new(2, 0), Point::new(2, 10), 10),
+            (Point::new(0, 11), Point::new(2, 10), 3),
+            (Point::new(20, 14), Point::new(25, 17), 8),
+            (Point::new(25, 17), Point::new(20, 14), 8),
+            (Point::new(17, 20), Point::new(21, 22), 6),
+            (Point::new(16, 7), Point::new(15, 3), 5),
+            (Point::new(14, 3), Point::new(15, 3), 1),
+            (Point::new(20, 1), Point::new(15, 3), 7),
+            (Point::new(4, 0), Point::new(9, 10), 15),
+            (Point::new(0, 2), Point::new(12, 7), 17),
+            (Point::new(0, 11), Point::new(5, 11), 5),
+            (Point::new(1, 15), Point::new(13, 0), 27),
+            (Point::new(1, 15), Point::new(37, 1), 50),
+            (Point::new(1, 15), Point::new(0, 2), 14),
+            (Point::new(1, 15), Point::new(36, 14), 36),
+        ];
+        //             Point { x: 13, y: 0  },
+        //             Point { x: 37, y: 1  },
+        //             Point { x: 0,  y: 2  },
+        //             Point { x: 36, y: 14 },
+        //             Point { x: 1,  y: 15 },
+        for (a, b, expected) in cases {
+            let actual = a.manhattan_distance(b);
+            assert_eq!(actual, expected, "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}", a, b);
+            let actual = b.manhattan_distance(a);
+            assert_eq!(actual, expected, "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}", b, a);
         }
     }
 }
