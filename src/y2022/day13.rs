@@ -374,13 +374,13 @@ mod tests {
 
     #[test]
     fn test_comparison() {
-        macro_rules! compare {
-            ($first:expr, $second:expr, $cmp:expr) => {
-                let first = parse_packet($first);
-                let second = parse_packet($second);
-                assert_eq!(compare_packets(&first, &second), $cmp);
-            };
-        }
+        // macro_rules! compare {
+        //     ($first:expr, $second:expr, $cmp:expr) => {
+        //         let first = parse_packet($first);
+        //         let second = parse_packet($second);
+        //         assert_eq!(compare_packets(&first, &second), $cmp);
+        //     };
+        // }
 
         // compare!("[]", "[]", Ordering::Equal);
         // compare!("[]", "[1]", Ordering::Less);
