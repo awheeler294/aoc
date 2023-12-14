@@ -8,7 +8,6 @@ pub fn solve(input: &[&str]) -> String {
 }
 
 fn path_sums(input: &[&str], expansion_factor: usize) -> usize {
-
     let galaxies = parse_galaxies(input, expansion_factor);
     // dbg!(&galaxies);
 
