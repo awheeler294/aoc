@@ -1,6 +1,6 @@
 use anyhow::{anyhow, Result};
 use std::cmp::{max, min};
-use std::ops::{Deref, DerefMut};
+use std::ops::{Deref, DerefMut, Index, IndexMut};
 use std::{collections::HashSet, fmt};
 
 #[derive(Debug, PartialEq, Eq, Hash, Copy, Clone)]
@@ -48,7 +48,7 @@ impl GridDirection {
     }
 }
 
-#[derive(PartialEq, Eq)]
+#[derive(PartialEq, Eq, Clone)]
 pub struct Grid<T> {
     spaces: Vec<T>,
     pub width: usize,
@@ -397,6 +397,56 @@ impl Grid<u32> {
             n.to_digit(10)
                 .unwrap_or_else(|| panic!("unable to parse {} as digit", n))
         })
+    }
+}
+
+impl<T> Index<(usize, usize)> for Grid<T>
+where
+    T: Clone + std::fmt::Debug + PartialEq + std::fmt::Display,
+{
+    type Output = T;
+
+    fn index(&self, index: (usize, usize)) -> &Self::Output {
+        let (x, y) = index;
+        self.get(&Point::new(x, y)).expect(&format!(
+            "Could not get x: {x}, y: {y}. Grid bounds width: {}, height: {}",
+            self.width, self.height
+        ))
+    }
+}
+
+impl<T> IndexMut<(usize, usize)> for Grid<T>
+where
+    T: Clone + std::fmt::Debug + PartialEq + std::fmt::Display,
+{
+    fn index_mut(&mut self, index: (usize, usize)) -> &mut T {
+        let (x, y) = index;
+        self.get_mut(&Point::new(x, y))
+            .expect(&format!("Could not get x: {x}, y: {y}."))
+    }
+}
+
+impl<T> Index<&Point> for Grid<T>
+where
+    T: Clone + std::fmt::Debug + PartialEq + std::fmt::Display,
+{
+    type Output = T;
+
+    fn index(&self, index: &Point) -> &Self::Output {
+        self.get(index).expect(&format!(
+            "Could not get point {index:?}. Grid bounds width: {}, height: {}",
+            self.width, self.height
+        ))
+    }
+}
+
+impl<T> IndexMut<&Point> for Grid<T>
+where
+    T: Clone + std::fmt::Debug + PartialEq + std::fmt::Display,
+{
+    fn index_mut(&mut self, index: &Point) -> &mut T {
+        self.get_mut(index)
+            .expect(&format!("Could not get point {index:?}."))
     }
 }
 
