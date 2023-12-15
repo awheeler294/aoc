@@ -48,7 +48,7 @@ impl GridDirection {
     }
 }
 
-#[derive(PartialEq, Eq, Clone)]
+#[derive(PartialEq, Eq, Clone, Hash)]
 pub struct Grid<T> {
     spaces: Vec<T>,
     pub width: usize,
@@ -287,6 +287,40 @@ where
                 self.height
             ))
         }
+    }
+
+    pub fn rotate_clockwise(&mut self) {
+        let r_width = self.height;
+        let r_height = self.width;
+
+        let mut rotated = Self::new(r_width, r_height, self[(0, 0)].clone());
+
+        for (y, line) in self.spaces[..].chunks(self.width).enumerate() {
+            for (x, val) in line.iter().enumerate() {
+                let rx = r_width - y - 1;
+                let ry = x;
+                rotated[(rx, ry)] = val.clone();
+            }
+        }
+
+        std::mem::swap(self, &mut rotated);
+    }
+
+    pub fn rotate_counter_clockwise(&mut self) {
+        let r_width = self.height;
+        let r_height = self.width;
+
+        let mut rotated = Self::new(r_width, r_height, self[(0, 0)].clone());
+
+        for (y, line) in self.spaces[..].chunks(self.width).enumerate() {
+            for (x, val) in line.iter().enumerate() {
+                let rx = y;
+                let ry = r_height - x - 1;
+                rotated[(rx, ry)] = val.clone();
+            }
+        }
+
+        std::mem::swap(self, &mut rotated);
     }
 
     pub fn idx_point(&self, idx: usize) -> Point {
@@ -614,5 +648,65 @@ mod tests {
             let actual = b.manhattan_distance(a);
             assert_eq!(actual, expected, "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}", b, a);
         }
+    }
+
+    #[test]
+    fn test_rotate_clockwise() {
+        let mut grid = Grid::parse_char(&[
+            "#.##..##.",
+            "..#.##.#.",
+            "##......#",
+            "##......#",
+            "..#.##.#.",
+            "..##..##.",
+            "#.#.##.#.",
+        ]);
+
+        #[rustfmt::skip]
+        let expected = Grid::parse_char(&[
+            "#..##.#", 
+            "...##..", 
+            "###..##", 
+            ".#....#", 
+            "#.#..#.", 
+            "#.#..#.", 
+            ".#....#", 
+            "###..##",
+            "...##..",
+        ]);
+
+        grid.rotate_clockwise();
+
+        assert_eq!(grid, expected);
+    }
+
+    #[test]
+    fn test_rotate_counter_clockwise() {
+        let mut grid = Grid::parse_char(&[
+            "#.##..##.",
+            "..#.##.#.",
+            "##......#",
+            "##......#",
+            "..#.##.#.",
+            "..##..##.",
+            "#.#.##.#.",
+        ]);
+
+        #[rustfmt::skip]
+        let expected = Grid::parse_char(&[
+            "..##...", 
+            "##..###", 
+            "#....#.", 
+            ".#..#.#", 
+            ".#..#.#", 
+            "#....#.", 
+            "##..###", 
+            "..##...",
+            "#.##..#",
+        ]);
+
+        grid.rotate_counter_clockwise();
+
+        assert_eq!(grid, expected);
     }
 }
