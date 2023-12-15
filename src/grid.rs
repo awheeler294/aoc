@@ -400,6 +400,17 @@ impl Grid<u32> {
     }
 }
 
+impl<T> Index<std::ops::Range<usize>> for Grid<T>
+where
+    T: Clone + std::fmt::Debug + PartialEq + std::fmt::Display,
+{
+    type Output = [T];
+
+    fn index(&self, index: std::ops::Range<usize>) -> &Self::Output {
+        &self.spaces[index]
+    }
+}
+
 impl<T> Index<(usize, usize)> for Grid<T>
 where
     T: Clone + std::fmt::Debug + PartialEq + std::fmt::Display,
