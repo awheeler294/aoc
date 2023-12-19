@@ -1,5 +1,6 @@
 use anyhow::{anyhow, Result};
 use std::cmp::{max, min};
+use std::fmt::Display;
 use std::ops::{Deref, DerefMut, Index, IndexMut};
 use std::{collections::HashSet, fmt};
 
@@ -555,6 +556,30 @@ where
         }
 
         write!(f, "}}")
+    }
+}
+
+impl<T> Display for Grid<T>
+where
+    T: std::fmt::Display + std::fmt::Debug,
+{
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let mut whitespace = String::new();
+        whitespace.push_str("\n   ");
+
+        whitespace.push_str("   ");
+
+        let mut line = whitespace.to_string();
+        for (i, space) in self.spaces.iter().enumerate() {
+            // line.push_str(&format!("{:#?}, ", space));
+            line.push_str(&format!("{}", space));
+            if i > 0 && (i + 1) % self.width == 0 {
+                write!(f, "{line}")?;
+                line = whitespace.to_string();
+            }
+        }
+
+        Ok(())
     }
 }
 
