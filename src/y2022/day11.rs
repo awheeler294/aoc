@@ -1,3 +1,4 @@
+use crate::algorithims::least_common_multiple;
 use std::fmt;
 
 pub fn solve(input: &[&str]) -> String {
@@ -216,27 +217,10 @@ fn parse_monkeys(input: &[&str]) -> Vec<Monkey> {
     monkeys
 }
 
-fn least_common_multiple(a: u64, b: u64) -> u64 {
-    let (mut x, mut y) = (a.min(b), a.max(b));
-    let mut remainder = x % y;
-    while remainder != 0 {
-        x = y;
-        y = remainder;
-        remainder = x % y;
-    }
-
-    (a * b) / y
-}
-
 #[cfg(test)]
 mod tests {
 
     use super::*;
-
-    #[test]
-    fn test_lcm() {
-        assert_eq!(least_common_multiple(15, 20), 60);
-    }
 
     #[test]
     fn test_monkey_business() {

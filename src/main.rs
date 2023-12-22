@@ -2,6 +2,7 @@ use std::fs;
 
 use clap::Parser;
 
+mod algorithims;
 mod grid;
 mod grid_v1;
 mod y2015;
