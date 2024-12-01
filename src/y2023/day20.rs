@@ -19,6 +19,11 @@ fn find_needed_iterations(input: &[&str]) -> usize {
         &"tx".to_string(),
         &modules
     ));
+    dbg!(find_cycle_len(
+        &"qm".to_string(),
+        &"dd".to_string(),
+        &modules
+    ));
 
     let rx_control = modules
         .iter()
