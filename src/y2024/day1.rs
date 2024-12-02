@@ -41,11 +41,40 @@ fn solve_part_2(input: &[&str]) -> u32 {
 #[cfg(test)]
 mod tests {
     
-    // use super::*;
-    // use pretty_assertions::assert_eq;
+    use super::*;
+    use pretty_assertions::assert_eq;
 
     #[test]
-    fn test_solve() {
+    fn test_solve_part_1() {
+        let input = [
+            "3   4",
+            "4   3",
+            "2   5",
+            "1   3",
+            "3   9",
+            "3   3",
+    ];
+
+        let expected = 11;
+        let actual = solve_part_1(&input);
+        assert_eq!(actual, expected);
+
+    }
+
+    #[test]
+    fn test_solve_part_2() {
+        let input = [
+            "3   4",
+            "4   3",
+            "2   5",
+            "1   3",
+            "3   9",
+            "3   3",
+    ];
+
+        let expected = 31;
+        let actual = solve_part_2(&input);
+        assert_eq!(actual, expected);
 
     }
 }
