@@ -8,6 +8,7 @@ mod grid_v1;
 mod y2015;
 mod y2022;
 mod y2023;
+mod y2024;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -35,6 +36,9 @@ fn main() {
         }
         "2023" => {
             println!("{}", y2023::run_day(&args.day, &lines))
+        }
+        "2024" => {
+            println!("{}", y2024::run_day(&args.day, &lines))
         }
         _ => {
             println!("Unknown year {}", args.year);
