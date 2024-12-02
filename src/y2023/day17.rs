@@ -2,7 +2,6 @@ use std::{
     collections::{BinaryHeap, HashMap},
     hash::Hash,
     io::stdout,
-    iter::FromIterator,
     thread,
     time::Duration,
     usize,

@@ -1,5 +1,3 @@
-use std::iter::FromIterator;
-
 pub fn solve(input: &[&str]) -> String {
     let part1 = solve_part_1(input);
     let part2 = solve_part_2(input);

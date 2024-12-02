@@ -153,7 +153,7 @@ impl<'a> Node<'a> {
         }
     }
 
-    fn parse_node_map(input: &'a [&'a str]) -> HashMap<&str, Node> {
+    fn parse_node_map(input: &'a [&'a str]) -> HashMap<&'a str, Node<'a>> {
         HashMap::from_iter(input.into_iter().map(|line| {
             let node = Node::try_from(*line).expect(&format!("Error parsing `{line}`"));
             (node.value, node)

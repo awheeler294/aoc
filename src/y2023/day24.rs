@@ -8,6 +8,7 @@ pub fn solve(_input: &[&str]) -> String {
 #[cfg(test)]
 mod tests {
 
+    #![allow(unused_imports)]
     use super::*;
 
     #[test]
