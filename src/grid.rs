@@ -1,7 +1,8 @@
 use anyhow::{anyhow, Result};
 use std::cmp::{max, min};
 use std::fmt::Display;
-use std::ops::{Deref, DerefMut, Index, IndexMut};
+use std::ops::{Add, Deref, DerefMut, Index, IndexMut};
+use std::process::Output;
 use std::{collections::HashSet, fmt};
 
 #[derive(Debug, PartialEq, Eq, Hash, Copy, Clone)]
@@ -18,6 +19,124 @@ impl Point {
     pub fn manhattan_distance(&self, other: Point) -> usize {
         (max(self.x, other.x) - min(self.x, other.x))
             + (max(self.y, other.y) - min(self.y, other.y))
+    }
+
+    pub fn get_adjacent(self, direction: GridDirection) -> Option<Self> {
+        Some(
+            match direction {
+                GridDirection::Up => {
+                    let y = self.y.checked_sub(1)?;
+
+                    Self::new(self.x, y)
+                }
+
+                GridDirection::Down => {
+                    let y = self.y.checked_add(1)?;
+
+                    Self::new(self.x, y)
+                }
+
+                GridDirection::Left => {
+                    let x = self.x.checked_sub(1)?;
+
+                    Self::new(x, self.y)
+                }
+
+                GridDirection::Right => {
+                    let x = self.x.checked_add(1)?;
+
+                    Self::new(x, self.y)
+                }
+
+                GridDirection::UpLeft => {
+                    let x = self.x.checked_sub(1)?;
+                    let y = self.y.checked_sub(1)?;
+
+                    Self::new(x, y)
+                }
+
+                GridDirection::UpRight => {
+                    let x = self.x.checked_add(1)?;
+                    let y = self.y.checked_sub(1)?;
+
+                    Self::new(x, y)
+                }
+
+                GridDirection::DownLeft => {
+                    let x = self.x.checked_sub(1)?;
+                    let y = self.y.checked_add(1)?;
+
+                    Self::new(x, y)
+                }
+
+                GridDirection::DownRight => {
+                    let x = self.x.checked_add(1)?;
+                    let y = self.y.checked_add(1)?;
+
+                    Self::new(x, y)
+                }
+            }
+        )
+    }
+}
+
+impl Add<GridDirection> for Point {
+    type Output = Self;
+
+    fn add(self, direction: GridDirection) -> Self {
+        match direction {
+            GridDirection::Up => {
+                let y = self.y - 1;
+
+                Self::new(self.x, y)
+            }
+
+            GridDirection::Down => {
+                let y = self.y + 1;
+
+                Self::new(self.x, y)
+            }
+
+            GridDirection::Left => {
+                let x = self.x - 1;
+
+                Self::new(x, self.y)
+            }
+
+            GridDirection::Right => {
+                let x = self.x + 1;
+
+                Self::new(x, self.y)
+            }
+
+            GridDirection::UpLeft => {
+                let x = self.x - 1;
+                let y = self.y - 1;
+
+                Self::new(x, y)
+            }
+
+            GridDirection::UpRight => {
+                let x = self.x + 1;
+                let y = self.y - 1;
+
+                Self::new(x, y)
+            }
+
+            GridDirection::DownLeft => {
+                let x = self.x - 1;
+                let y = self.y + 1;
+
+                Self::new(x, y)
+            }
+
+            GridDirection::DownRight => {
+                let x = self.x + 1;
+                let y = self.y + 1;
+
+                Self::new(x, y)
+            }
+        }
     }
 }
 
@@ -134,59 +253,7 @@ where
         direction: GridDirection,
     ) -> Option<(Point, &T)> {
         if self.is_in_bounds(point) {
-            let d_point = match direction {
-                GridDirection::Up => {
-                    let y = point.y.checked_sub(1)?;
-
-                    Point::new(point.x, y)
-                }
-
-                GridDirection::Down => {
-                    let y = point.y.checked_add(1)?;
-
-                    Point::new(point.x, y)
-                }
-
-                GridDirection::Left => {
-                    let x = point.x.checked_sub(1)?;
-
-                    Point::new(x, point.y)
-                }
-
-                GridDirection::Right => {
-                    let x = point.x.checked_add(1)?;
-
-                    Point::new(x, point.y)
-                }
-
-                GridDirection::UpLeft => {
-                    let x = point.x.checked_sub(1)?;
-                    let y = point.y.checked_sub(1)?;
-
-                    Point::new(x, y)
-                }
-
-                GridDirection::UpRight => {
-                    let x = point.x.checked_add(1)?;
-                    let y = point.y.checked_sub(1)?;
-
-                    Point::new(x, y)
-                }
-
-                GridDirection::DownLeft => {
-                    let x = point.x.checked_sub(1)?;
-                    let y = point.y.checked_add(1)?;
-
-                    Point::new(x, y)
-                }
-
-                GridDirection::DownRight => {
-                    let x = point.x.checked_add(1)?;
-                    let y = point.y.checked_add(1)?;
-
-                    Point::new(x, y)
-                }
-            };
+            let d_point = point.get_adjacent(direction)?;
 
             if let Some(value) = self.get(&d_point) {
                 return Some((d_point, value));
@@ -202,59 +269,7 @@ where
         direction: GridDirection,
     ) -> Option<(Point, &mut T)> {
         if self.is_in_bounds(point) {
-            let d_point = match direction {
-                GridDirection::Up => {
-                    let y = point.y.checked_sub(1)?;
-
-                    Point::new(point.x, y)
-                }
-
-                GridDirection::Down => {
-                    let y = point.y.checked_add(1)?;
-
-                    Point::new(point.x, y)
-                }
-
-                GridDirection::Left => {
-                    let x = point.x.checked_sub(1)?;
-
-                    Point::new(x, point.y)
-                }
-
-                GridDirection::Right => {
-                    let x = point.x.checked_add(1)?;
-
-                    Point::new(x, point.y)
-                }
-
-                GridDirection::UpLeft => {
-                    let x = point.x.checked_sub(1)?;
-                    let y = point.y.checked_sub(1)?;
-
-                    Point::new(x, y)
-                }
-
-                GridDirection::UpRight => {
-                    let x = point.x.checked_add(1)?;
-                    let y = point.y.checked_sub(1)?;
-
-                    Point::new(x, y)
-                }
-
-                GridDirection::DownLeft => {
-                    let x = point.x.checked_sub(1)?;
-                    let y = point.y.checked_add(1)?;
-
-                    Point::new(x, y)
-                }
-
-                GridDirection::DownRight => {
-                    let x = point.x.checked_add(1)?;
-                    let y = point.y.checked_add(1)?;
-
-                    Point::new(x, y)
-                }
-            };
+            let d_point = point.get_adjacent(direction)?;
 
             if let Some(value) = self.get_mut(&d_point) {
                 return Some((d_point, value));
