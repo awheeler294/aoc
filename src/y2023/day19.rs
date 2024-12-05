@@ -9,6 +9,7 @@ pub fn solve(input: &[&str]) -> String {
     format!(" Part1: {} \n Part2: {}", part1, part2)
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 struct PartRange {
     x: Range<usize>,
@@ -17,6 +18,7 @@ struct PartRange {
     s: Range<usize>,
 }
 
+#[allow(dead_code)]
 fn calculate_combinations(input: &[&str]) -> usize {
     let workflows = parse_workflows(input);
 
@@ -30,6 +32,7 @@ fn calculate_combinations(input: &[&str]) -> usize {
     count_combinations("in", ranges, &workflows)
 }
 
+#[allow(dead_code)]
 fn count_combinations(
     start: &str,
     ranges: PartRange,
