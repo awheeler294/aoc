@@ -165,6 +165,19 @@ impl GridDirection {
             Self::Left,
         ]
     }
+
+    pub fn turn_clockwise_90(&mut self) -> Self {
+        match self {
+            Self::Up => Self::Right,
+            Self::Right => Self::Down,
+            Self::Down => Self::Left,
+            Self::Left => Self::Up,
+            Self::UpLeft => Self::UpRight,
+            Self::UpRight => Self::DownRight,
+            Self::DownRight => Self::DownLeft,
+            Self::DownLeft => Self::UpLeft,
+        }
+    }
 }
 
 #[derive(PartialEq, Eq, Clone, Hash)]
