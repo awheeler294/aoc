@@ -4,11 +4,13 @@ use clap::Parser;
 
 mod algorithims;
 mod grid;
+mod util;
 mod grid_v1;
 mod y2015;
 mod y2022;
 mod y2023;
 mod y2024;
+mod y2025;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -39,6 +41,9 @@ fn main() {
         }
         "2024" => {
             println!("{}", y2024::run_day(&args.day, &lines))
+        }
+        "2025" => {
+            println!("{}", y2025::run_day(&args.day, &lines))
         }
         _ => {
             println!("Unknown year {}", args.year);
