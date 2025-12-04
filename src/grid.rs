@@ -308,7 +308,7 @@ where
             Ok(())
         } else {
             Err(anyhow!(
-                "Grid::set_at: x: {}, y: {} is outside the grid bounds. width: {}, height: {}",
+                "Grid::set: x: {}, y: {} is outside the grid bounds. width: {}, height: {}",
                 point.x,
                 point.y,
                 self.width,
