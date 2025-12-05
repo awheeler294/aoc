@@ -8,13 +8,13 @@ pub fn solve(input: &[&str]) -> String {
         })
         .collect::<Vec<_>>();
 
-    let part1 = calculate_wrapping_paper_ammount(&dimensions);
-    let part2 = calculate_ribbon_ammount(&dimensions);
+    let part1 = calculate_wrapping_paper_amount(&dimensions);
+    let part2 = calculate_ribbon_amount(&dimensions);
 
     format!(" Part1: {} \n Part2: {}", part1, part2)
 }
 
-fn calculate_wrapping_paper_ammount(box_dimensions: &[Vec<usize>]) -> usize {
+fn calculate_wrapping_paper_amount(box_dimensions: &[Vec<usize>]) -> usize {
     let mut total = 0;
 
     for d in box_dimensions {
@@ -30,7 +30,7 @@ fn calculate_wrapping_paper_ammount(box_dimensions: &[Vec<usize>]) -> usize {
     total
 }
 
-fn calculate_ribbon_ammount(box_dimensions: &[Vec<usize>]) -> usize {
+fn calculate_ribbon_amount(box_dimensions: &[Vec<usize>]) -> usize {
     let mut total = 0;
 
     for d in box_dimensions {
@@ -38,10 +38,10 @@ fn calculate_ribbon_ammount(box_dimensions: &[Vec<usize>]) -> usize {
         dimensions.sort();
         let (l, w, h) = (dimensions[0], dimensions[1], dimensions[2]);
 
-        let wrap_ammount = 2 * l + 2 * w;
-        let bow_ammount = l * w * h;
+        let wrap_amount = 2 * l + 2 * w;
+        let bow_amount = l * w * h;
 
-        total += wrap_ammount + bow_ammount;
+        total += wrap_amount + bow_amount;
     }
 
     total
@@ -53,58 +53,58 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_calculate_wrapping_paper_ammount() {
+    fn test_calculate_wrapping_paper_amount() {
         let dimensions = vec![vec![2, 3, 4]];
         let expected = 58;
-        let acutal = calculate_wrapping_paper_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_wrapping_paper_amount(&dimensions);
+        assert_eq!(expected, actual);
 
         let dimensions = vec![vec![1, 1, 10]];
         let expected = 43;
-        let acutal = calculate_wrapping_paper_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_wrapping_paper_amount(&dimensions);
+        assert_eq!(expected, actual);
 
         let dimensions = vec![vec![4, 3, 2]];
         let expected = 58;
-        let acutal = calculate_wrapping_paper_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_wrapping_paper_amount(&dimensions);
+        assert_eq!(expected, actual);
 
         let dimensions = vec![vec![1, 10, 1]];
         let expected = 43;
-        let acutal = calculate_wrapping_paper_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_wrapping_paper_amount(&dimensions);
+        assert_eq!(expected, actual);
 
         let dimensions = vec![vec![1, 10, 1], vec![4, 3, 2]];
         let expected = 101;
-        let acutal = calculate_wrapping_paper_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_wrapping_paper_amount(&dimensions);
+        assert_eq!(expected, actual);
     }
 
     #[test]
-    fn test_calculate_ribbon_ammount() {
+    fn test_calculate_ribbon_amount() {
         let dimensions = vec![vec![2, 3, 4]];
         let expected = 34;
-        let acutal = calculate_ribbon_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_ribbon_amount(&dimensions);
+        assert_eq!(expected, actual);
 
         let dimensions = vec![vec![1, 1, 10]];
         let expected = 14;
-        let acutal = calculate_ribbon_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_ribbon_amount(&dimensions);
+        assert_eq!(expected, actual);
 
         let dimensions = vec![vec![4, 3, 2]];
         let expected = 34;
-        let acutal = calculate_ribbon_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_ribbon_amount(&dimensions);
+        assert_eq!(expected, actual);
 
         let dimensions = vec![vec![1, 10, 1]];
         let expected = 14;
-        let acutal = calculate_ribbon_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_ribbon_amount(&dimensions);
+        assert_eq!(expected, actual);
 
         let dimensions = vec![vec![1, 10, 1], vec![4, 3, 2]];
         let expected = 48;
-        let acutal = calculate_ribbon_ammount(&dimensions);
-        assert_eq!(expected, acutal);
+        let actual = calculate_ribbon_amount(&dimensions);
+        assert_eq!(expected, actual);
     }
 }

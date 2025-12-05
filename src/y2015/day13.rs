@@ -19,7 +19,7 @@ fn create_happiness_graph(input: &[&str]) -> HashMap<String, HashMap<String, i32
             "lose" => -1,
             _ => panic!("cant parse sign from line: {}", line),
         };
-        let ammount = line.split(' ').nth(3).unwrap().parse::<i32>().unwrap();
+        let amount = line.split(' ').nth(3).unwrap().parse::<i32>().unwrap();
         let other_person = line
             .split(' ')
             .nth(10)
@@ -28,7 +28,7 @@ fn create_happiness_graph(input: &[&str]) -> HashMap<String, HashMap<String, i32
             .unwrap()
             .to_string();
 
-        (*graph.entry(person).or_insert(HashMap::new())).insert(other_person, ammount * sign);
+        (*graph.entry(person).or_insert(HashMap::new())).insert(other_person, amount * sign);
     }
 
     graph
@@ -89,6 +89,7 @@ mod tests {
 
     #[test]
     fn test_create_happiness_graph() {
+        #[rustfmt::skip]
         let input = vec![
             "Alice would gain 54 happiness units by sitting next to Bob.",
             "Alice would lose 79 happiness units by sitting next to Carol.",
@@ -147,6 +148,7 @@ mod tests {
     #[test]
     #[ignore = "TODO"]
     fn test_maximize_happiness() {
+        #[rustfmt::skip]
         let input = vec![
             "Alice would gain 54 happiness units by sitting next to Bob.",
             "Alice would lose 79 happiness units by sitting next to Carol.",
@@ -170,6 +172,8 @@ mod tests {
 
     //#[test]
     //fn debug_test() {
+
+    //    #[rustfmt::skip]
     //    let input = vec![
     //        "Alice would lose 57 happiness units by sitting next to Bob.",
     //        "Alice would lose 62 happiness units by sitting next to Carol.",

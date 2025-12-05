@@ -181,6 +181,7 @@ mod tests {
         let circuit = parse_instructions(&instructions).unwrap();
         assert_eq!(circuit, expected_circuit);
 
+        #[rustfmt::skip]
         let instructions = vec![
             "123 -> x",
             "456 -> y",

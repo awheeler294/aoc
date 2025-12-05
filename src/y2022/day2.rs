@@ -122,7 +122,12 @@ mod tests {
 
     #[test]
     fn test_score_rps1() {
-        let input = vec!["A Y", "B X", "C Z"];
+        #[rustfmt::skip]
+        let input = vec![
+            "A Y", 
+            "B X", 
+            "C Z"
+        ];
 
         let actual = score_rps1(&input);
         let expected = 15;
@@ -147,7 +152,12 @@ mod tests {
 
     #[test]
     fn test_score_rps2() {
-        let input = vec!["A Y", "B X", "C Z"];
+        #[rustfmt::skip]
+        let input = vec![
+            "A Y", 
+            "B X", 
+            "C Z"
+        ];
 
         let actual = score_rps2(&input);
         let expected = 12;

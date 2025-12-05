@@ -59,6 +59,7 @@ mod tests {
 
     #[test]
     fn test_do_intervals_overlap() {
+        #[rustfmt::skip]
         let cases = vec![
             ("2-4,6-8", false),
             ("2-3,4-5", false),
@@ -83,6 +84,7 @@ mod tests {
 
     #[test]
     fn test_are_intervals_fully_contained() {
+        #[rustfmt::skip]
         let cases = vec![
             ("2-4,6-8", false),
             ("2-3,4-5", false),
@@ -107,8 +109,14 @@ mod tests {
 
     #[test]
     fn test_count_contained_intervals() {
+        #[rustfmt::skip]
         let intervals = vec![
-            "2-4,6-8", "2-3,4-5", "5-7,7-9", "2-8,3-7", "6-6,4-6", "2-6,4-8",
+            "2-4,6-8",
+            "2-3,4-5",
+            "5-7,7-9",
+            "2-8,3-7",
+            "6-6,4-6",
+            "2-6,4-8",
         ];
 
         let expected = 2;

@@ -72,6 +72,7 @@ mod tests {
 
     #[test]
     fn test_get_duplicates() {
+        #[rustfmt::skip]
         let input = vec![
             "vJrwpWtwJgWrhcsFMMfFFhFp",
             "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
@@ -91,6 +92,7 @@ mod tests {
 
     #[test]
     fn test_find_dup() {
+        #[rustfmt::skip]
         let cases = vec![
             ("vJrwpWtwJgWrhcsFMMfFFhFp", 'p'),
             ("jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL", 'L'),
@@ -119,6 +121,7 @@ mod tests {
 
     #[test]
     fn test_find_common() {
+        #[rustfmt::skip]
         let input = vec![
             "vJrwpWtwJgWrhcsFMMfFFhFp",
             "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
@@ -132,6 +135,7 @@ mod tests {
             "Got '{actual}' when expecting '{expected}' from calling find_common"
         );
 
+        #[rustfmt::skip]
         let input = vec![
             "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
             "ttgJtRGJQctTZtZT",
@@ -148,6 +152,7 @@ mod tests {
 
     #[test]
     fn test_get_common_priorities() {
+        #[rustfmt::skip]
         let input = vec![
             "vJrwpWtwJgWrhcsFMMfFFhFp",
             "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",

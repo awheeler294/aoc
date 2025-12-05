@@ -303,6 +303,7 @@ mod tests {
 
     #[test]
     fn test_process_parts() {
+        #[rustfmt::skip]
         let input = [
             "px{a<2006:qkq,m>2090:A,rfg}",
             "pv{a>1716:R,A}",
@@ -332,6 +333,7 @@ mod tests {
     #[test]
     #[ignore = "part 2 not working"]
     fn test_calculate_combinations() {
+        #[rustfmt::skip]
         let input = [
             "px{a<2006:qkq,m>2090:A,rfg}",
             "pv{a>1716:R,A}",

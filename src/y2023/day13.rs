@@ -164,6 +164,7 @@ mod tests {
 
     #[test]
     fn test_reflection_summery() {
+        #[rustfmt::skip]
         let input = [
             "#.##..##.",
             "..#.##.#.",
@@ -213,6 +214,7 @@ mod tests {
 
     #[test]
     fn test_reflection_summery_1() {
+        #[rustfmt::skip]
         let input = [
             "###.##.##",
             "##.####.#",
@@ -240,6 +242,7 @@ mod tests {
 
     #[test]
     fn test_reflection_summery_2() {
+        #[rustfmt::skip]
         let input = [
             ".##.##...##...##.",
             "#####..##..##..##",
@@ -289,6 +292,7 @@ mod tests {
 
     #[test]
     fn test_horizontal_reflection() {
+        #[rustfmt::skip]
         let pattern = [
             "#...##..#",
             "#....#..#",
@@ -306,6 +310,7 @@ mod tests {
 
     #[test]
     fn test_vertical_reflection() {
+        #[rustfmt::skip]
         let pattern = [
             "#.##..##.",
             "..#.##.#.",
@@ -323,6 +328,7 @@ mod tests {
 
     #[test]
     fn test_smudged_horizontal_reflection() {
+        #[rustfmt::skip]
         let pattern = [
             "#...##..#",
             "#....#..#",
@@ -337,6 +343,7 @@ mod tests {
         let actual = smudged_horizontal_reflection(&pattern);
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let pattern = [
             "#.##..##.",
             "..#.##.#.",
@@ -354,6 +361,7 @@ mod tests {
 
     #[test]
     fn test_rotate() {
+        #[rustfmt::skip]
         let pattern = [
             "#.##..##.",
             "..#.##.#.",

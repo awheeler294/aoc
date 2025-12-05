@@ -188,6 +188,7 @@ mod tests {
 
     #[test]
     fn test_drop_sand() {
+        #[rustfmt::skip]
         let input = [
             "498,4 -> 498,6 -> 496,6",
             "503,4 -> 502,4 -> 502,9 -> 494,9",
@@ -205,6 +206,7 @@ mod tests {
 
     #[test]
     fn test_drop_all_sand() {
+        #[rustfmt::skip]
         let input = [
             "498,4 -> 498,6 -> 496,6",
             "503,4 -> 502,4 -> 502,9 -> 494,9",

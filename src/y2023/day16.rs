@@ -202,6 +202,7 @@ mod tests {
 
     #[test]
     fn test_energized() {
+        #[rustfmt::skip]
         let input = [
             r#".|...\...."#,
             r#"|.-.\....."#,
@@ -222,6 +223,7 @@ mod tests {
 
     #[test]
     fn test_energized_1() {
+        #[rustfmt::skip]
         let input = [
             r#"\|........"#,
             r#".-.....|.."#,
@@ -253,6 +255,7 @@ mod tests {
 
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let input = [
             r#".......\./"#,
             r#".........."#,
@@ -287,6 +290,7 @@ mod tests {
 
     #[test]
     fn test_max_energized() {
+        #[rustfmt::skip]
         let input = [
             r#".|...\...."#,
             r#"|.-.\....."#,

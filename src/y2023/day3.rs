@@ -118,7 +118,7 @@ fn find_number(point: &Point, grid: &Grid<char>, visited: &mut Grid<bool>) -> Op
             }
 
             if val.is_digit(10) == false {
-                // cursor is currentl at the left-most digit
+                // cursor is currently at the left-most digit
                 break;
             }
 
@@ -163,6 +163,7 @@ mod tests {
 
     #[test]
     fn test_find_part_numbers() {
+        #[rustfmt::skip]
         let input = [
             "467..114..",
             "...*......",
@@ -185,7 +186,8 @@ mod tests {
     }
 
     #[test]
-    fn test_adjecent_part_numbers() {
+    fn test_adjacent_part_numbers() {
+        #[rustfmt::skip]
         let input = [
             "467*114...",
             "...*......",
@@ -209,6 +211,7 @@ mod tests {
 
     #[test]
     fn test_part_numbers_do_not_span_linebreaks() {
+        #[rustfmt::skip]
         let input = [
             "467..114..",
             "...*......",
@@ -232,6 +235,7 @@ mod tests {
 
     #[test]
     fn test_find_gear_ratios() {
+        #[rustfmt::skip]
         let input = [
             "467..114..",
             "...*......",
@@ -255,6 +259,7 @@ mod tests {
 
     #[test]
     fn test_find_number() {
+        #[rustfmt::skip]
         let input = [
             "467..114..",
             "...*......",
@@ -294,6 +299,7 @@ mod tests {
 
     #[test]
     fn test_find_gear_part_numbers() {
+        #[rustfmt::skip]
         let input = [
             "467...114.",
             "...*.....*",

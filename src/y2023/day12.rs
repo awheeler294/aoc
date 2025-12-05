@@ -83,6 +83,7 @@ mod tests {
 
     #[test]
     fn test_total_combinations() {
+        #[rustfmt::skip]
         let input = [
             "???.### 1,1,3",
             ".??..??...?##. 1,1,3",
@@ -99,6 +100,7 @@ mod tests {
 
     #[test]
     fn test_total_combinations_unfolded() {
+        #[rustfmt::skip]
         let input = [
             "???.### 1,1,3",
             ".??..??...?##. 1,1,3",

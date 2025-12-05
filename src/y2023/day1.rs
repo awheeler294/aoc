@@ -105,7 +105,13 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        let input = ["1abc2", "pqr3stu8vwx", "a1b2c3d4e5f", "treb7uchet"];
+        #[rustfmt::skip]
+        let input = [
+            "1abc2", 
+            "pqr3stu8vwx",
+            "a1b2c3d4e5f",
+            "treb7uchet"
+        ];
 
         let expected = 142;
         let actual = part1(&input);
@@ -177,6 +183,7 @@ mod tests {
 
     #[test]
     fn test_part2() {
+        #[rustfmt::skip]
         let input = [
             "two1nine",
             "eightwothree",

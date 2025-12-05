@@ -2,10 +2,10 @@ use std::fs;
 
 use clap::Parser;
 
-mod algorithims;
+mod algorithms;
 mod grid;
-mod util;
 mod grid_v1;
+mod util;
 mod y2015;
 mod y2022;
 mod y2023;

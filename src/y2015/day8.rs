@@ -12,7 +12,7 @@ fn count_chars_in_lines(lines: &[&str]) -> (usize, usize) {
     for line in lines {
         total_count += line.len();
         char_count += count_chars(line);
-        encoded_count += count_esacpe_chars(line);
+        encoded_count += count_escape_chars(line);
     }
 
     dbg!(char_count);
@@ -58,7 +58,7 @@ fn count_chars(line: &str) -> usize {
     count
 }
 
-fn count_esacpe_chars(line: &str) -> usize {
+fn count_escape_chars(line: &str) -> usize {
     let mut count = 2; // for the surrounding double quotes
     for ch in line.chars() {
         match ch {
@@ -87,22 +87,22 @@ mod tests {
 
         let line = "\"\"";
         let expected = 6;
-        let actual = count_esacpe_chars(line);
+        let actual = count_escape_chars(line);
         assert_eq!(actual, expected);
 
         let line = "\"abc\"";
         let expected = 9;
-        let actual = count_esacpe_chars(line);
+        let actual = count_escape_chars(line);
         assert_eq!(actual, expected);
 
         let line = "\"aaa\\\"aaa\"";
         let expected = 16;
-        let actual = count_esacpe_chars(line);
+        let actual = count_escape_chars(line);
         assert_eq!(actual, expected);
 
         let line = "\"\\x27\"";
         let expected = 11;
-        let actual = count_esacpe_chars(line);
+        let actual = count_escape_chars(line);
         assert_eq!(actual, expected);
     }
 }

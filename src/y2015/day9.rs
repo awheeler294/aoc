@@ -129,6 +129,7 @@ mod tests {
 
     #[test]
     fn test_parse_distances() {
+        #[rustfmt::skip]
         let distances = vec![
             "London to Dublin = 464",
             "London to Belfast = 518",
@@ -156,6 +157,7 @@ mod tests {
 
     #[test]
     fn test_traveling_santaman() {
+        #[rustfmt::skip]
         let input = vec![
             "London to Dublin = 464",
             "London to Belfast = 518",
@@ -172,6 +174,7 @@ mod tests {
 
     #[test]
     fn test_show_off_santaman() {
+        #[rustfmt::skip]
         let input = vec![
             "London to Dublin = 464",
             "London to Belfast = 518",

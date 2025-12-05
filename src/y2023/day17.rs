@@ -266,6 +266,7 @@ mod tests {
     #[test]
     #[ignore]
     fn test_min_path_cost() {
+        #[rustfmt::skip]
         let input = [
             "2413432311323",
             "3215453535623",

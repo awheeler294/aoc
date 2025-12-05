@@ -414,10 +414,28 @@ mod tests {
     #[test]
     fn test_hands() {
         // test data courtesy of https://www.reddit.com/r/adventofcode/comments/18cr4xr/2023_day_7_better_example_input_not_a_spoiler/
+
+        #[rustfmt::skip]
         let input = [
-            "2345A 1", "Q2KJJ 13", "Q2Q2Q 19", "T3T3J 17", "T3Q33 11", "2345J 3", "J345A 2",
-            "32T3K 5", "T55J5 29", "KK677 7", "KTJJT 34", "QQQJA 31", "JJJJJ 37", "JAAAA 43",
-            "AAAAJ 59", "AAAAA 61", "2AAAA 23", "2JJJJ 53", "JJJJ2 41",
+            "2345A 1",
+            "Q2KJJ 13",
+            "Q2Q2Q 19",
+            "T3T3J 17",
+            "T3Q33 11",
+            "2345J 3",
+            "J345A 2",
+            "32T3K 5",
+            "T55J5 29",
+            "KK677 7",
+            "KTJJT 34",
+            "QQQJA 31",
+            "JJJJJ 37",
+            "JAAAA 43",
+            "AAAAJ 59",
+            "AAAAA 61",
+            "2AAAA 23",
+            "2JJJJ 53",
+            "JJJJ2 41",
         ];
 
         let expected = vec![
@@ -463,6 +481,7 @@ mod tests {
 
     #[test]
     fn test_score_game() {
+        #[rustfmt::skip]
         let input = [
             "32T3K 765",
             "T55J5 684",

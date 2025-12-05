@@ -3,7 +3,7 @@ use std::{
     hash::Hash,
 };
 
-use crate::algorithims::least_common_multiple;
+use crate::algorithms::least_common_multiple;
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = run_circuit(1000, input);
@@ -299,6 +299,7 @@ mod tests {
 
     #[test]
     fn test_run_circuit() {
+        #[rustfmt::skip]
         let input = [
             "broadcaster -> a, b, c",
             "%a -> b",
@@ -318,6 +319,7 @@ mod tests {
 
     #[test]
     fn test_run_circuit_example_2() {
+        #[rustfmt::skip]
         let input = [
             "broadcaster -> a",
             "%a -> inv, con",
@@ -333,6 +335,7 @@ mod tests {
 
     #[test]
     fn test_find_cycle_len() {
+        #[rustfmt::skip]
         let input = [
             "broadcaster -> a",
             "%a -> inv, con",

@@ -100,6 +100,7 @@ mod tests {
 
     #[test]
     fn test_calculate_load() {
+        #[rustfmt::skip]
         let input = [
             "O....#....",
             "O.OO#....#",
@@ -120,6 +121,7 @@ mod tests {
 
     #[test]
     fn test_calculate_load_spin() {
+        #[rustfmt::skip]
         let input = [
             "O....#....",
             "O.OO#....#",
@@ -140,6 +142,7 @@ mod tests {
 
     #[test]
     fn test_rotate_tilt() {
+        #[rustfmt::skip]
         let input = [
             "O....#....",
             "O.OO#....#",
@@ -157,6 +160,7 @@ mod tests {
         // North
         tilt(&mut platform);
 
+        #[rustfmt::skip]
         let expected = Grid::parse_char(&[
             "OOOO.#.O..",
             "OO..#....#",
@@ -173,6 +177,7 @@ mod tests {
 
         platform.rotate_clockwise();
 
+        #[rustfmt::skip]
         let expected = Grid::parse_char(&[
             "##....OOOO",
             ".......OOO",
@@ -190,6 +195,7 @@ mod tests {
         // West
         tilt(&mut platform);
 
+        #[rustfmt::skip]
         let expected = Grid::parse_char(&[
             "##OO..OOOO",
             ".......OOO",
@@ -206,6 +212,7 @@ mod tests {
 
         platform.rotate_clockwise();
 
+        #[rustfmt::skip]
         let expected = Grid::parse_char(&[
             "....#....#",
             "..###....#",
@@ -223,6 +230,7 @@ mod tests {
         // South
         tilt(&mut platform);
 
+        #[rustfmt::skip]
         let expected = Grid::parse_char(&[
             "....#O..O#",
             "..###...O#",
@@ -239,6 +247,7 @@ mod tests {
 
         platform.rotate_clockwise();
 
+        #[rustfmt::skip]
         let expected = Grid::parse_char(&[
             ".#...#....",
             "....#.....",
@@ -256,6 +265,7 @@ mod tests {
         // East
         tilt(&mut platform);
 
+        #[rustfmt::skip]
         let expected = Grid::parse_char(&[
             ".#...#.O..",
             ".O..#..O..",
@@ -273,6 +283,7 @@ mod tests {
         //North
         platform.rotate_clockwise();
 
+        #[rustfmt::skip]
         let expected = Grid::parse_char(&[
             ".....#....",
             "....#...O#",

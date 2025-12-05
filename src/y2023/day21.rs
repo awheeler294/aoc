@@ -81,6 +81,7 @@ mod tests {
 
     #[test]
     fn test_end_positions_count() {
+        #[rustfmt::skip]
         let input = [
             "...........",
             ".....###.#.",

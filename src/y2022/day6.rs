@@ -50,6 +50,7 @@ mod tests {
 
     #[test]
     fn test_find_start_of_packet_marker() {
+        #[rustfmt::skip]
         let cases = vec![
             ("mjqjpqmgbljsphdztnvjfqwrcgsmlb", Some(7)),
             ("bvwbjplbgvbhsrlpgdmjqwftvncz", Some(5)),
@@ -71,6 +72,7 @@ mod tests {
 
     #[test]
     fn test_find_start_of_message_marker() {
+        #[rustfmt::skip]
         let cases = vec![
             ("mjqjpqmgbljsphdztnvjfqwrcgsmlb", Some(19)),
             ("bvwbjplbgvbhsrlpgdmjqwftvncz", Some(23)),

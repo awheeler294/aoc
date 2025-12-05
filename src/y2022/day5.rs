@@ -2,7 +2,7 @@
 struct CraneInstruction {
     source: usize,
     destination: usize,
-    ammount: usize,
+    amount: usize,
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -12,7 +12,7 @@ struct Crane {
 
 impl Crane {
     fn process_instruction(&mut self, instruction: &CraneInstruction) {
-        for _ in 0..instruction.ammount {
+        for _ in 0..instruction.amount {
             let to_move = self.stacks[instruction.source - 1].pop().unwrap();
             self.stacks[instruction.destination - 1].push(to_move);
         }
@@ -34,7 +34,7 @@ impl CrateMover9001 {
     fn process_instruction(&mut self, instruction: &CraneInstruction) {
         let mut to_move = Vec::new();
 
-        for _ in 0..instruction.ammount {
+        for _ in 0..instruction.amount {
             to_move.push(self.stacks[instruction.source - 1].pop().unwrap());
         }
 
@@ -129,12 +129,12 @@ fn parse_crane_instructions(instruction_data: &[&str]) -> Vec<CraneInstruction> 
     for line in instruction_data {
         let mut words = line.split_whitespace();
 
-        let ammount = words.nth(1).unwrap().parse::<usize>().unwrap();
+        let amount = words.nth(1).unwrap().parse::<usize>().unwrap();
         let source = words.nth(1).unwrap().parse::<usize>().unwrap();
         let destination = words.nth(1).unwrap().parse::<usize>().unwrap();
 
         instructions.push(CraneInstruction {
-            ammount,
+            amount,
             source,
             destination,
         });
@@ -181,7 +181,7 @@ mod tests {
         };
 
         let instruction = CraneInstruction {
-            ammount: 3,
+            amount: 3,
             source: 1,
             destination: 3,
         };
@@ -241,22 +241,22 @@ mod tests {
             vec![vec!['Z', 'N'], vec!['M', 'C', 'D'], vec!['P']],
             vec![
                 CraneInstruction {
-                    ammount: 1,
+                    amount: 1,
                     source: 2,
                     destination: 1,
                 },
                 CraneInstruction {
-                    ammount: 3,
+                    amount: 3,
                     source: 1,
                     destination: 3,
                 },
                 CraneInstruction {
-                    ammount: 2,
+                    amount: 2,
                     source: 2,
                     destination: 1,
                 },
                 CraneInstruction {
-                    ammount: 1,
+                    amount: 1,
                     source: 1,
                     destination: 2,
                 },
@@ -283,22 +283,22 @@ mod tests {
 
         let expected = vec![
             CraneInstruction {
-                ammount: 1,
+                amount: 1,
                 source: 2,
                 destination: 1,
             },
             CraneInstruction {
-                ammount: 3,
+                amount: 3,
                 source: 1,
                 destination: 3,
             },
             CraneInstruction {
-                ammount: 2,
+                amount: 2,
                 source: 2,
                 destination: 1,
             },
             CraneInstruction {
-                ammount: 1,
+                amount: 1,
                 source: 1,
                 destination: 2,
             },

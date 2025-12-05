@@ -1,4 +1,4 @@
-use crate::algorithims::least_common_multiple;
+use crate::algorithms::least_common_multiple;
 use std::fmt;
 
 pub fn solve(input: &[&str]) -> String {
@@ -224,6 +224,7 @@ mod tests {
 
     #[test]
     fn test_monkey_business() {
+        #[rustfmt::skip]
         let mut monkeys = [
             Monkey::new(&[79, 98], '*', Some(19), 23, 2, 3),
             Monkey::new(&[54, 65, 75, 74], '+', Some(6), 19, 2, 0),
@@ -241,6 +242,7 @@ mod tests {
 
     #[test]
     fn test_parse_monkeys() {
+        #[rustfmt::skip]
         let input = [
             "Monkey 0:",
             "  Starting items: 79, 98",
@@ -281,6 +283,7 @@ mod tests {
 
     #[test]
     fn test_monkey_business_2() {
+        #[rustfmt::skip]
         let input = [
             "Monkey 0:",
             "  Starting items: 79, 98",

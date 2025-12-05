@@ -63,6 +63,8 @@ mod tests {
 
    #[test]
    fn test_solve_part_1() {
+
+      #[rustfmt::skip]
       let input = [];
 
       let expected = 0;
@@ -74,6 +76,8 @@ mod tests {
 
    #[test]
    fn test_solve_part_2() {
+
+      #[rustfmt::skip]
       let input = [];
 
       let expected = 0;

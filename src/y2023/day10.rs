@@ -292,6 +292,7 @@ mod tests {
 
     #[test]
     fn test_enclosed_tile_count() {
+        #[rustfmt::skip]
         let input = [
             "...........",
             ".S-------7.",
@@ -308,6 +309,7 @@ mod tests {
         let actual = enclosed_tile_count(&input);
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let input = [
             "..........",
             ".S------7.",
@@ -324,6 +326,7 @@ mod tests {
         let actual = enclosed_tile_count(&input);
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let input = [
             ".F----7F7F7F7F-7....",
             ".|F--7||||||||FJ....",
@@ -341,6 +344,7 @@ mod tests {
         let actual = enclosed_tile_count(&input);
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let input = [
             "FF7FSF7F7F7F7F7F---7",
             "L|LJ||||||||||||F--J",

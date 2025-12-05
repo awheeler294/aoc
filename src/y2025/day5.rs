@@ -105,8 +105,7 @@ fn solve_part_2(input: &[&str]) -> u64 {
         if let Some(last_merged) = merged_ranges.last_mut() {
             if range.start > last_merged.end + 1 {
                 merged_ranges.push(range);
-            }
-            else if (last_merged.contains(range.start) && !last_merged.contains(range.end))
+            } else if (last_merged.contains(range.start) && !last_merged.contains(range.end))
                 || (range.start == last_merged.end + 1)
             {
                 last_merged.end = range.end;

@@ -301,6 +301,7 @@ mod tests {
 
     #[test]
     fn test_hand_ord() {
+        #[rustfmt::skip]
         let hands = vec![
             Hand::try_from("32T3K 765").unwrap(), // 0
             Hand::try_from("T55J5 684").unwrap(), // 1
@@ -324,6 +325,7 @@ mod tests {
 
     #[test]
     fn test_score_game() {
+        #[rustfmt::skip]
         let input = [
             "32T3K 765",
             "T55J5 684",

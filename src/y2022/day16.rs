@@ -10,7 +10,7 @@ pub fn solve(_input: &[&str]) -> String {
 #[derive(Debug, PartialEq, Eq)]
 struct Node {
     value: usize,
-    adjency: Vec<String>,
+    adjacency: Vec<String>,
 }
 
 fn parse_input(input: &[&str]) -> HashMap<String, Node> {
@@ -34,12 +34,12 @@ fn parse_input(input: &[&str]) -> HashMap<String, Node> {
         tokens.next();
         tokens.next();
         tokens.next();
-        let mut adjency = Vec::new();
+        let mut adjacency = Vec::new();
         for tunnel in tokens {
-            adjency.push(tunnel.replace(',', ""));
+            adjacency.push(tunnel.replace(',', ""));
         }
 
-        graph.insert(label.to_string(), Node { value, adjency });
+        graph.insert(label.to_string(), Node { value, adjacency });
     }
 
     graph
@@ -68,7 +68,7 @@ fn max_flow_rate(
 
     let total_flow = flow_rate * (time_remaining.saturating_sub(1));
 
-    for label in current_node.adjency.iter() {
+    for label in current_node.adjacency.iter() {
         if !visited.contains(label) {
             if time_remaining >= 1 {
                 results.push((
@@ -105,6 +105,7 @@ mod tests {
 
     #[test]
     fn test_parse_input() {
+        #[rustfmt::skip]
         let input = [
             "Valve AA has flow rate=0; tunnels lead to valves DD, II, BB",
             "Valve BB has flow rate=13; tunnels lead to valves CC, AA",
@@ -120,16 +121,16 @@ mod tests {
 
         #[rustfmt::skip]
         let expected = HashMap::from([
-            ("AA".to_string(), Node { value: 0,  adjency: vec!["DD".to_string(), "II".to_string(), "BB".to_string()]}),
-            ("BB".to_string(), Node { value: 13, adjency: vec!["CC".to_string(), "AA".to_string()]}),
-            ("CC".to_string(), Node { value: 2,  adjency: vec!["DD".to_string(), "BB".to_string()]}),
-            ("DD".to_string(), Node { value: 20, adjency: vec!["CC".to_string(), "AA".to_string(), "EE".to_string()]}),
-            ("EE".to_string(), Node { value: 3,  adjency: vec!["FF".to_string(), "DD".to_string()]}),
-            ("FF".to_string(), Node { value: 0,  adjency: vec!["EE".to_string(), "GG".to_string()]}),
-            ("GG".to_string(), Node { value: 0,  adjency: vec!["FF".to_string(), "HH".to_string()]}),
-            ("HH".to_string(), Node { value: 22, adjency: vec!["GG".to_string()]}),
-            ("II".to_string(), Node { value: 0,  adjency: vec!["AA".to_string(), "JJ".to_string()]}),
-            ("JJ".to_string(), Node { value: 21, adjency: vec!["II".to_string()]}),
+            ("AA".to_string(), Node { value: 0,  adjacency: vec!["DD".to_string(), "II".to_string(), "BB".to_string()]}),
+            ("BB".to_string(), Node { value: 13, adjacency: vec!["CC".to_string(), "AA".to_string()]}),
+            ("CC".to_string(), Node { value: 2,  adjacency: vec!["DD".to_string(), "BB".to_string()]}),
+            ("DD".to_string(), Node { value: 20, adjacency: vec!["CC".to_string(), "AA".to_string(), "EE".to_string()]}),
+            ("EE".to_string(), Node { value: 3,  adjacency: vec!["FF".to_string(), "DD".to_string()]}),
+            ("FF".to_string(), Node { value: 0,  adjacency: vec!["EE".to_string(), "GG".to_string()]}),
+            ("GG".to_string(), Node { value: 0,  adjacency: vec!["FF".to_string(), "HH".to_string()]}),
+            ("HH".to_string(), Node { value: 22, adjacency: vec!["GG".to_string()]}),
+            ("II".to_string(), Node { value: 0,  adjacency: vec!["AA".to_string(), "JJ".to_string()]}),
+            ("JJ".to_string(), Node { value: 21, adjacency: vec!["II".to_string()]}),
         ]);
 
         let actual = parse_input(&input);
@@ -144,6 +145,7 @@ mod tests {
     #[test]
     #[ignore = "Run Time"]
     fn test_find_max_flow_rate() {
+        #[rustfmt::skip]
         let input = [
             "Valve AA has flow rate=0; tunnels lead to valves BB",
             "Valve BB has flow rate=13; tunnels lead to valves AA",
@@ -158,6 +160,7 @@ mod tests {
             actual, expected, input
         );
 
+        #[rustfmt::skip]
         let input = [
             "Valve AA has flow rate=0; tunnels lead to valves BB CC",
             "Valve BB has flow rate=13; tunnels lead to valves AA CC",
@@ -177,7 +180,7 @@ mod tests {
             "CC".to_string(),
             Node {
                 value: 2,
-                adjency: vec![],
+                adjacency: vec![],
             },
         )]);
         let time_remaining = 5;
@@ -189,6 +192,7 @@ mod tests {
             actual, expected
         );
 
+        #[rustfmt::skip]
         let input = [
             "Valve AA has flow rate=0; tunnels lead to valves DD, II, BB",
             "Valve BB has flow rate=13; tunnels lead to valves CC, AA",

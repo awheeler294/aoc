@@ -153,6 +153,7 @@ mod tests {
 
     #[test]
     fn test_dug_area() {
+        #[rustfmt::skip]
         let dig_plan = [
             "R 6 (#70c710)",
             "D 5 (#0dc571)",
@@ -178,6 +179,7 @@ mod tests {
 
     #[test]
     fn test_dug_area2() {
+        #[rustfmt::skip]
         let dig_plan = [
             "R 6 (#70c710)",
             "D 5 (#0dc571)",

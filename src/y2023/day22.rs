@@ -193,6 +193,7 @@ mod tests {
 
     #[test]
     fn test_count_removable_blocks() {
+        #[rustfmt::skip]
         let input = [
             "1,0,1~1,2,1",
             "0,0,2~2,0,2",
@@ -207,6 +208,7 @@ mod tests {
         let actual = count_removable_blocks(&input);
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let input = [
             "0,0,1~0,0,2", // - A
             "1,0,1~2,0,1", // - B
@@ -218,6 +220,7 @@ mod tests {
         let actual = count_removable_blocks(&input);
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let input = [
             "0,0,1~0,1,1", // <-- A
             "1,1,1~1,1,1", // <-- B
@@ -229,6 +232,7 @@ mod tests {
         let actual = count_removable_blocks(&input);
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let input = [
             "0,0,1~1,0,1", // <- A
             "0,1,1~0,1,2", // <- B
@@ -266,6 +270,7 @@ mod tests {
         let actual = count_removable_blocks(&input);
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let input = [
             "0,0,1~0,0,1", // <- A
             "1,1,1~1,1,1", // <- B
@@ -280,6 +285,7 @@ mod tests {
 
     #[test]
     fn test_drop_blocks() {
+        #[rustfmt::skip]
         let input = [
             "1,0,1~1,2,1", // <- A
             "0,0,2~2,0,2", // <- B
@@ -293,6 +299,7 @@ mod tests {
         .map(|l| Line::parse_str(l))
         .collect::<Vec<_>>();
 
+        #[rustfmt::skip]
         let expected = [
             "1,0,0~1,2,0", // <- A
             "0,0,1~2,0,1", // <- B
@@ -313,6 +320,7 @@ mod tests {
 
     #[test]
     fn test_is_supporting() {
+        #[rustfmt::skip]
         let blocks = [
             "1,0,0~1,2,0", // <- A
             "0,0,1~2,0,1", // <- B

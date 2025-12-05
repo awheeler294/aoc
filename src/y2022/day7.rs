@@ -469,6 +469,7 @@ mod tests {
 
     #[test]
     fn test_find_deletable_size() {
+        #[rustfmt::skip]
         let log = vec![
             "$ cd /",
             "$ ls",
@@ -503,6 +504,7 @@ mod tests {
 
     #[test]
     fn test_construct_fs_from_log() {
+        #[rustfmt::skip]
         let log = vec![
             "$ cd /",
             "$ ls",

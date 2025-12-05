@@ -112,6 +112,7 @@ mod tests {
 
     #[test]
     fn test_hash_instructions() {
+        #[rustfmt::skip]
         let input = ["rn=1,cm-,qp=3,cm=2,qp-,pc=4,ot=9,ab=5,pc-,pc=6,ot=7"];
 
         let expected = 1320;
@@ -122,6 +123,7 @@ mod tests {
 
     #[test]
     fn test_total_power() {
+        #[rustfmt::skip]
         let input = ["rn=1,cm-,qp=3,cm=2,qp-,pc=4,ot=9,ab=5,pc-,pc=6,ot=7"];
 
         let expected = 145;

@@ -189,6 +189,7 @@ mod tests {
 
     #[test]
     fn test_num_steps() {
+        #[rustfmt::skip]
         let input = [
             "RL",
             "",
@@ -205,6 +206,7 @@ mod tests {
         let actual = num_steps(&input);
         assert_eq!(actual, expected);
 
+        #[rustfmt::skip]
         let input = [
             "LLR",
             "",
@@ -220,6 +222,7 @@ mod tests {
 
     #[test]
     fn test_simultaneous_steps() {
+        #[rustfmt::skip]
         let input = [
             "LR",
             "",

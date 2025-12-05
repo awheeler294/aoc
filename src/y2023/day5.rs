@@ -136,7 +136,7 @@ impl Almanac {
             .split_whitespace()
             .map(|n| {
                 n.parse::<isize>()
-                    .context(format!("Cound not parse `{n}` as digit"))
+                    .context(format!("Could not parse `{n}` as digit"))
             })
             .collect::<Result<Vec<_>, _>>()?;
 
@@ -309,50 +309,52 @@ mod tests {
 
     #[test]
     fn test_mapping() {
+        #[rustfmt::skip]
         let input = "50 98 2";
 
         let mapping = Mapping::parse(&input).unwrap();
 
         let value = 98;
         let expected = Some(50);
-        let acutual = mapping.get(value);
+        let actual = mapping.get(value);
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
 
         let value = 99;
         let expected = Some(51);
-        let acutual = mapping.get(value);
+        let actual = mapping.get(value);
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
 
         let value = 97;
         let expected = None;
-        let acutual = mapping.get(value);
+        let actual = mapping.get(value);
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
 
         let value = 100;
         let expected = None;
-        let acutual = mapping.get(value);
+        let actual = mapping.get(value);
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
     }
 
     #[test]
     fn test_mapping_large_range() {
+        #[rustfmt::skip]
         let input = "52 50 48";
 
         let mapping = Mapping::parse(&input).unwrap();
 
         let value = 49;
         let expected = None;
-        let acutual = mapping.get(value);
+        let actual = mapping.get(value);
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
 
         let value = 100;
         let expected = None;
-        let acutual = mapping.get(value);
+        let actual = mapping.get(value);
 
         let offset = 2;
         for value in 50..=97 {
@@ -365,12 +367,16 @@ mod tests {
             );
         }
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
     }
 
     #[test]
     fn test_almanac_map() {
-        let mapping_data = ["50 98 2", "52 50 48"];
+        #[rustfmt::skip]
+        let mapping_data = [
+            "50 98 2", 
+            "52 50 48"
+        ];
 
         let map = AlmanacMap::parse(&mapping_data).unwrap();
 
@@ -419,6 +425,7 @@ mod tests {
 
     #[test]
     fn test_find_lowest_location() {
+        #[rustfmt::skip]
         let almanac_data = [
             "seeds: 79 14 55 13",
             "seed-to-soil map:",
@@ -465,6 +472,7 @@ mod tests {
     #[test]
     #[ignore = "trying to find a faster way to do this"]
     fn test_find_lowest_location_seed_ranges() {
+        #[rustfmt::skip]
         let almanac_data = [
             "seeds: 79 14 55 13",
             "seed-to-soil map:",
@@ -510,32 +518,33 @@ mod tests {
 
     #[test]
     fn test_mapping_get_reverse() {
+        #[rustfmt::skip]
         let input = "50 98 2";
 
         let mapping = Mapping::parse(&input).unwrap();
 
         let value = 50;
         let expected = Some(98);
-        let acutual = mapping.get_reverse(value);
+        let actual = mapping.get_reverse(value);
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
 
         let value = 51;
         let expected = Some(99);
-        let acutual = mapping.get_reverse(value);
+        let actual = mapping.get_reverse(value);
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
 
         let value = 49;
         let expected = None;
-        let acutual = mapping.get_reverse(value);
+        let actual = mapping.get_reverse(value);
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
 
         let value = 52;
         let expected = None;
-        let acutual = mapping.get_reverse(value);
+        let actual = mapping.get_reverse(value);
 
-        assert_eq!(acutual, expected);
+        assert_eq!(actual, expected);
     }
 }
