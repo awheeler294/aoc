@@ -1,43 +1,60 @@
-pub fn solve(input: &[&str]) -> String {
-   let part1 = solve_part_1(input);
-   let part2 = solve_part_2(input);
+use std::collections::HashMap;
 
-   format!(" Part1: {} \n Part2: {}", part1, part2)
+use crate::grid::Point;
+
+pub fn solve(input: &[&str]) -> String {
+    let part1 = solve_part_1(input);
+    let part2 = solve_part_2(input);
+
+    format!(" Part1: {} \n Part2: {}", part1, part2)
 }
 
 fn solve_part_1(input: &[&str]) -> usize {
-   input.len()
+    let mut nodes: HashMap<char, Vec<Point>> = HashMap::new();
+
+    for (y, line) in input.into_iter().enumerate() {
+        for (x, cell) in line.chars().enumerate() {
+            if cell != '.' {
+                nodes
+                    .entry(cell)
+                    .and_modify(|n| n.push(Point::new(x, y)))
+                    .or_insert_with(|| vec![Point::new(x, y)]);
+            }
+        }
+    }
+
+    0
 }
 
 fn solve_part_2(input: &[&str]) -> usize {
-   input.len()
+    input.len()
 }
 
 #[cfg(test)]
 mod tests {
-    
-   use super::*;
-   use pretty_assertions::assert_eq;
 
-   #[test]
-   fn test_solve_part_1() {
-      let input = [];
+    use super::*;
+    use pretty_assertions::assert_eq;
 
-      let expected = 0;
+    #[test]
+    fn test_solve_part_1() {
+        let input = [];
 
-      let actual = solve_part_1(&input);
+        let expected = 0;
 
-      assert_eq!(actual, expected);
-   }
+        let actual = solve_part_1(&input);
 
-   #[test]
-   fn test_solve_part_2() {
-      let input = [];
+        assert_eq!(actual, expected);
+    }
 
-      let expected = 0;
+    #[test]
+    fn test_solve_part_2() {
+        let input = [];
 
-      let actual = solve_part_2(&input);
+        let expected = 0;
 
-      assert_eq!(actual, expected);
-   }
+        let actual = solve_part_2(&input);
+
+        assert_eq!(actual, expected);
+    }
 }

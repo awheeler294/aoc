@@ -11,7 +11,7 @@ fn solve_part_1(input: &[&str]) -> u32 {
     let (rules, updates) = parse_input(input);
 
     let mut sum = 0;
-    
+
     for u in updates.iter().filter(|update| is_valid(update, &rules)) {
         let center_idx = u.len() / 2;
         sum += u[center_idx];
@@ -24,17 +24,19 @@ fn solve_part_2(input: &[&str]) -> u32 {
     let (rules, mut updates) = parse_input(input);
 
     let mut sum = 0;
-    
-    for u in updates.iter_mut().filter(|update| !is_valid(update, &rules)) {
+
+    for u in updates
+        .iter_mut()
+        .filter(|update| !is_valid(update, &rules))
+    {
         u.sort_by(|a, b| {
             if let Some(rule) = rules.get(a) {
                 if rule.contains(b) {
                     return Ordering::Less;
                 }
-            } 
-            
+            }
+
             Ordering::Equal
-            
         });
 
         let center_idx = u.len() / 2;
@@ -58,28 +60,28 @@ fn parse_input(input: &[&str]) -> (HashMap<u32, Vec<u32>>, Vec<Vec<u32>>) {
         let l = l.parse::<u32>().unwrap();
         let r = r.parse::<u32>().unwrap();
 
-        rules.entry(l).and_modify(|predicates| predicates.push(r)).or_insert(vec![r]);
+        rules
+            .entry(l)
+            .and_modify(|predicates| predicates.push(r))
+            .or_insert(vec![r]);
     }
 
     let mut updates = vec![];
 
     while let Some(line) = input_iter.next() {
         updates.push(
-            line
-                .split(',')
+            line.split(',')
                 .map(|val| val.parse::<u32>().unwrap())
-                .collect()
+                .collect(),
         );
     }
 
     (rules, updates)
-} 
+}
 
 fn is_valid(update: &Vec<u32>, rules: &HashMap<u32, Vec<u32>>) -> bool {
     for (i, val) in update.iter().enumerate() {
-        
         if let Some(rule) = rules.get(val) {
-            
             for n in update.iter().take(i) {
                 for r in rule {
                     if n == r {
@@ -87,9 +89,7 @@ fn is_valid(update: &Vec<u32>, rules: &HashMap<u32, Vec<u32>>) -> bool {
                     }
                 }
             }
-
         }
-
     }
 
     return true;
@@ -97,7 +97,7 @@ fn is_valid(update: &Vec<u32>, rules: &HashMap<u32, Vec<u32>>) -> bool {
 
 #[cfg(test)]
 mod tests {
-    
+
     use super::*;
     use pretty_assertions::assert_eq;
 
@@ -137,7 +137,7 @@ mod tests {
         let expected = 143;
 
         let actual = solve_part_1(&input);
-        
+
         assert_eq!(actual, expected);
     }
 
@@ -177,7 +177,7 @@ mod tests {
         let expected = 123;
 
         let actual = solve_part_2(&input);
-        
+
         assert_eq!(actual, expected);
     }
 }
