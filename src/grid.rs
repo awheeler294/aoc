@@ -21,59 +21,61 @@ impl Point {
     }
 
     pub fn get_adjacent(self, direction: GridDirection) -> Option<Self> {
-        Some(match direction {
-            GridDirection::Up => {
-                let y = self.y.checked_sub(1)?;
+        Some(
+            match direction {
+                GridDirection::Up => {
+                    let y = self.y.checked_sub(1)?;
 
-                Self::new(self.x, y)
+                    Self::new(self.x, y)
+                }
+
+                GridDirection::Down => {
+                    let y = self.y.checked_add(1)?;
+
+                    Self::new(self.x, y)
+                }
+
+                GridDirection::Left => {
+                    let x = self.x.checked_sub(1)?;
+
+                    Self::new(x, self.y)
+                }
+
+                GridDirection::Right => {
+                    let x = self.x.checked_add(1)?;
+
+                    Self::new(x, self.y)
+                }
+
+                GridDirection::UpLeft => {
+                    let x = self.x.checked_sub(1)?;
+                    let y = self.y.checked_sub(1)?;
+
+                    Self::new(x, y)
+                }
+
+                GridDirection::UpRight => {
+                    let x = self.x.checked_add(1)?;
+                    let y = self.y.checked_sub(1)?;
+
+                    Self::new(x, y)
+                }
+
+                GridDirection::DownLeft => {
+                    let x = self.x.checked_sub(1)?;
+                    let y = self.y.checked_add(1)?;
+
+                    Self::new(x, y)
+                }
+
+                GridDirection::DownRight => {
+                    let x = self.x.checked_add(1)?;
+                    let y = self.y.checked_add(1)?;
+
+                    Self::new(x, y)
+                }
             }
-
-            GridDirection::Down => {
-                let y = self.y.checked_add(1)?;
-
-                Self::new(self.x, y)
-            }
-
-            GridDirection::Left => {
-                let x = self.x.checked_sub(1)?;
-
-                Self::new(x, self.y)
-            }
-
-            GridDirection::Right => {
-                let x = self.x.checked_add(1)?;
-
-                Self::new(x, self.y)
-            }
-
-            GridDirection::UpLeft => {
-                let x = self.x.checked_sub(1)?;
-                let y = self.y.checked_sub(1)?;
-
-                Self::new(x, y)
-            }
-
-            GridDirection::UpRight => {
-                let x = self.x.checked_add(1)?;
-                let y = self.y.checked_sub(1)?;
-
-                Self::new(x, y)
-            }
-
-            GridDirection::DownLeft => {
-                let x = self.x.checked_sub(1)?;
-                let y = self.y.checked_add(1)?;
-
-                Self::new(x, y)
-            }
-
-            GridDirection::DownRight => {
-                let x = self.x.checked_add(1)?;
-                let y = self.y.checked_add(1)?;
-
-                Self::new(x, y)
-            }
-        })
+        )
     }
 }
 

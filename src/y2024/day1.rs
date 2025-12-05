@@ -12,20 +12,9 @@ fn solve_part_1(input: &[&str]) -> u32 {
     let mut list2 = vec![];
 
     for line in input {
-        let (left, right) = line
-            .split_once(" ")
-            .expect(&format!("Could not split {line} on whitespace"));
-        list1.push(
-            left.trim()
-                .parse::<u32>()
-                .expect(&format!("could not parse {left} as u32")),
-        );
-        list2.push(
-            right
-                .trim()
-                .parse::<u32>()
-                .expect(&format!("could not parse {right} as u32")),
-        );
+        let (left, right) = line.split_once(" ").expect(&format!("Could not split {line} on whitespace"));
+        list1.push(left.trim().parse::<u32>().expect(&format!("could not parse {left} as u32")));
+        list2.push(right.trim().parse::<u32>().expect(&format!("could not parse {right} as u32")));
     }
 
     list1.sort();
@@ -39,48 +28,53 @@ fn solve_part_2(input: &[&str]) -> u32 {
     let mut list2 = HashMap::new();
 
     for line in input {
-        let (left, right) = line
-            .split_once(" ")
-            .expect(&format!("Could not split {line} on whitespace"));
-        list1.push(
-            left.trim()
-                .parse::<u32>()
-                .expect(&format!("could not parse {left} as u32")),
-        );
+        let (left, right) = line.split_once(" ").expect(&format!("Could not split {line} on whitespace"));
+        list1.push(left.trim().parse::<u32>().expect(&format!("could not parse {left} as u32")));
 
-        let r_val = right
-            .trim()
-            .parse::<u32>()
-            .expect(&format!("could not parse {right} as u32"));
+        let r_val = right.trim().parse::<u32>().expect(&format!("could not parse {right} as u32"));
         *list2.entry(r_val).or_insert(0) += 1;
     }
 
-    list1
-        .into_iter()
-        .fold(0, |acc, val| acc + val * *(list2.get(&val).unwrap_or(&0)))
+    list1.into_iter().fold(0, |acc, val| acc + val * *(list2.get(&val).unwrap_or(&0)))
 }
 
 #[cfg(test)]
 mod tests {
-
+    
     use super::*;
     use pretty_assertions::assert_eq;
 
     #[test]
     fn test_solve_part_1() {
-        let input = ["3   4", "4   3", "2   5", "1   3", "3   9", "3   3"];
+        let input = [
+            "3   4",
+            "4   3",
+            "2   5",
+            "1   3",
+            "3   9",
+            "3   3",
+    ];
 
         let expected = 11;
         let actual = solve_part_1(&input);
         assert_eq!(actual, expected);
+
     }
 
     #[test]
     fn test_solve_part_2() {
-        let input = ["3   4", "4   3", "2   5", "1   3", "3   9", "3   3"];
+        let input = [
+            "3   4",
+            "4   3",
+            "2   5",
+            "1   3",
+            "3   9",
+            "3   3",
+    ];
 
         let expected = 31;
         let actual = solve_part_2(&input);
         assert_eq!(actual, expected);
+
     }
 }

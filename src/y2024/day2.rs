@@ -6,16 +6,13 @@ pub fn solve(input: &[&str]) -> String {
 }
 
 fn solve_part_1(input: &[&str]) -> usize {
-    input
-        .iter()
-        .map(|line| {
-            line.split_whitespace()
-                .map(|n| {
-                    n.parse::<i32>()
-                        .expect(&format!("Could not parse {n} as i32"))
-                })
-                .collect::<Vec<i32>>()
-        })
+
+    input.iter()
+        .map(|line| line
+            .split_whitespace()
+            .map(|n| n.parse::<i32>().expect(&format!("Could not parse {n} as i32")))
+            .collect::<Vec::<i32>>()
+        )
         .map(|report| is_safe(&report))
         .filter(|r| *r)
         .count()
@@ -30,7 +27,7 @@ fn is_safe(report: &[i32]) -> bool {
         let diff = report[0] - report[1];
         if diff < 0 {
             -1
-        } else if diff > 0 {
+        } else if diff > 0{
             1
         } else {
             return false;
@@ -38,7 +35,7 @@ fn is_safe(report: &[i32]) -> bool {
     };
 
     for (i, n2) in report.iter().enumerate().skip(1) {
-        let n1 = report[i - 1];
+        let n1 = report[i-1];
         let diff = n1 - n2;
 
         if diff == 0 {
@@ -62,16 +59,13 @@ fn is_safe(report: &[i32]) -> bool {
 }
 
 fn solve_part_2(input: &[&str]) -> usize {
-    input
-        .iter()
-        .map(|line| {
-            line.split_whitespace()
-                .map(|n| {
-                    n.parse::<i32>()
-                        .expect(&format!("Could not parse {n} as i32"))
-                })
-                .collect::<Vec<i32>>()
-        })
+
+    input.iter()
+        .map(|line| line
+            .split_whitespace()
+            .map(|n| n.parse::<i32>().expect(&format!("Could not parse {n} as i32")))
+            .collect::<Vec::<i32>>()
+        )
         .map(|report| is_safe_with_dampner(&report))
         .filter(|r| *r)
         .count()
@@ -86,7 +80,7 @@ fn is_safe_with_dampner(report: &[i32]) -> bool {
         for i in 0..report.len() {
             let mut damped = Vec::new();
             damped.extend_from_slice(&report[0..i]);
-            damped.extend_from_slice(&report[i + 1..]);
+            damped.extend_from_slice(&report[i+1..]);
 
             if is_safe(&damped) {
                 // eprintln!("safe by damping {i}");
@@ -101,7 +95,7 @@ fn is_safe_with_dampner(report: &[i32]) -> bool {
 
 #[cfg(test)]
 mod tests {
-
+    
     use super::*;
     use pretty_assertions::assert_eq;
 
