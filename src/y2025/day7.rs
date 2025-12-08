@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::grid::Grid;
+use crate::util::grid::Grid;
 
 pub fn solve(input: &[&str]) -> String {
     let (part_1, part_2) = simulate_beams(input);

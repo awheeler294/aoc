@@ -1,4 +1,4 @@
-use crate::grid_v1::Grid;
+use crate::util::grid_v1::Grid;
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = sum_signal_strengths(input);

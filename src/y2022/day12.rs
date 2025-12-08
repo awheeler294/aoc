@@ -1,6 +1,6 @@
 use std::{cmp::Reverse, collections::HashMap};
 
-use crate::grid_v1::{Grid, GridDirections, Point};
+use crate::util::grid_v1::{Grid, GridDirections, Point};
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = Map::parse_map(input).path_len();

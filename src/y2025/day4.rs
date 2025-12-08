@@ -1,4 +1,4 @@
-use crate::grid::{Grid, GridDirection, Point};
+use crate::util::grid::{Grid, GridDirection, Point};
 
 pub fn solve(input: &[&str]) -> String {
     let part_1 = solve_part_1(input);

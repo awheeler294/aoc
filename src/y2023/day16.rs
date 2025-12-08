@@ -1,4 +1,4 @@
-use crate::grid::{Grid, GridDirection, Point};
+use crate::util::grid::{Grid, GridDirection, Point};
 use std::{collections::HashSet, thread};
 
 pub fn solve(input: &[&str]) -> String {

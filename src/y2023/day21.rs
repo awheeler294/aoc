@@ -3,7 +3,7 @@ use std::{
     iter::FromIterator,
 };
 
-use crate::grid::{Grid, GridDirection};
+use crate::util::grid::{Grid, GridDirection};
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = end_positions_count(64, input);

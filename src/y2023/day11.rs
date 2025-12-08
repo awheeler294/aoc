@@ -1,4 +1,4 @@
-use crate::grid::Point;
+use crate::util::grid::Point;
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = path_sums(input, 2);

@@ -1,6 +1,6 @@
 use regex::Regex;
 
-use crate::grid::GridDirection;
+use crate::util::grid::GridDirection;
 use std::i64;
 
 pub fn solve(input: &[&str]) -> String {

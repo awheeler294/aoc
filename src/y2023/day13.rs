@@ -1,6 +1,6 @@
 use std::iter::FromIterator;
 
-use crate::grid::Grid;
+use crate::util::grid::Grid;
 
 pub fn solve(input: &[&str]) -> String {
     let (part1, part2) = reflection_summery(&input);

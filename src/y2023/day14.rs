@@ -1,6 +1,6 @@
 use std::{char, collections::HashMap};
 
-use crate::grid::{Grid, GridDirection, Point};
+use crate::util::grid::{Grid, GridDirection, Point};
 
 pub fn solve(input: &[&str]) -> String {
     let part1 = calculate_load_once(&input);

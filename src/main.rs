@@ -3,8 +3,6 @@ use std::fs;
 use clap::Parser;
 
 mod algorithms;
-mod grid;
-mod grid_v1;
 mod util;
 mod y2015;
 mod y2022;
