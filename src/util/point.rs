@@ -135,6 +135,28 @@ impl Add<GridDirection> for Point {
     }
 }
 
+#[derive(Debug, PartialEq, Eq, Hash, Copy, Clone)]
+pub struct Point3 {
+    pub x: usize,
+    pub y: usize,
+    pub z: usize,
+}
+
+impl Point3 {
+    pub fn new(x: usize, y: usize, z: usize) -> Self {
+        Self { x, y, z }
+    }
+
+    pub fn euclidean_distance(&self, other: Self) -> f32 {
+        (
+            (self.x as f32 - other.x as f32).powf(2.0) +
+            (self.y as f32 - other.y as f32).powf(2.0) +
+            (self.z as f32 - other.z as f32).powf(2.0)
+        )
+            .sqrt()
+    }
+}
+
 #[derive(Debug, PartialEq, Eq, Copy, Clone, Hash)]
 pub enum GridDirection {
     Up,
