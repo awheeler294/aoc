@@ -149,7 +149,11 @@ mod tests {
 
         let expected = 13;
         let actual = count_tail_visited(&motions, 2);
-        assert_eq!(actual, expected, "\nGot `{actual}` when expecting `{expected}` from calling count_tail_visited on `{:#?}`.", motions);
+        assert_eq!(
+            actual, expected,
+            "\nGot `{actual}` when expecting `{expected}` from calling count_tail_visited on `{:#?}`.",
+            motions
+        );
     }
 
     #[test]
@@ -168,6 +172,10 @@ mod tests {
 
         let expected = 36;
         let actual = count_tail_visited(&motions, 10);
-        assert_eq!(actual, expected, "\nGot `{actual}` when expecting `{expected}` from calling count_tail_visited on `{:#?}`.", motions);
+        assert_eq!(
+            actual, expected,
+            "\nGot `{actual}` when expecting `{expected}` from calling count_tail_visited on `{:#?}`.",
+            motions
+        );
     }
 }

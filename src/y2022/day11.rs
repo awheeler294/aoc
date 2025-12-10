@@ -278,7 +278,10 @@ mod tests {
         let actual = monkey_business(&mut monkeys);
         let expected = 10_605;
 
-        assert_eq!(actual, expected, "\n Got {actual} when expecting {expected} from calling monkey_business on parsed monkeys");
+        assert_eq!(
+            actual, expected,
+            "\n Got {actual} when expecting {expected} from calling monkey_business on parsed monkeys"
+        );
     }
 
     #[test]
@@ -319,6 +322,9 @@ mod tests {
         let actual = monkey_business_2(&mut monkeys);
         let expected = 2_713_310_158;
 
-        assert_eq!(actual, expected, "\n Got {actual} when expecting {expected} from calling monkey_business_2 on parsed monkeys");
+        assert_eq!(
+            actual, expected,
+            "\n Got {actual} when expecting {expected} from calling monkey_business_2 on parsed monkeys"
+        );
     }
 }

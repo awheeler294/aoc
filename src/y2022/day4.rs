@@ -78,7 +78,10 @@ mod tests {
 
         for (input, expected) in cases {
             let actual = do_intervals_overlap(input).unwrap();
-            assert_eq!(actual, expected, "Got '{actual}' when expecting '{expected}' when calling do_intervals_overlap on '{input}'");
+            assert_eq!(
+                actual, expected,
+                "Got '{actual}' when expecting '{expected}' when calling do_intervals_overlap on '{input}'"
+            );
         }
     }
 
@@ -103,7 +106,10 @@ mod tests {
 
         for (input, expected) in cases {
             let actual = are_intervals_fully_contained(input).unwrap();
-            assert_eq!(actual, expected, "Got '{actual}' when expecting '{expected}' when calling are_intervals_fully_contained on '{input}'");
+            assert_eq!(
+                actual, expected,
+                "Got '{actual}' when expecting '{expected}' when calling are_intervals_fully_contained on '{input}'"
+            );
         }
     }
 

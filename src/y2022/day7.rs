@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Context, Result};
+use anyhow::{Context, Result, anyhow};
 use std::collections::HashMap;
 use std::fmt;
 
@@ -317,7 +317,10 @@ impl FileSystem {
             }
         }
 
-        Err(anyhow!("FileSystem::get_node_by_name: Could not find a node with name `{name}` starting from node `{:#?}`", self.get_node_by_id(start_node)?))
+        Err(anyhow!(
+            "FileSystem::get_node_by_name: Could not find a node with name `{name}` starting from node `{:#?}`",
+            self.get_node_by_id(start_node)?
+        ))
     }
 
     fn get_dir_by_name(&self, name: &str, start_node: usize) -> Result<(usize, &FsNode)> {
@@ -334,7 +337,10 @@ impl FileSystem {
             }
         }
 
-        Err(anyhow!("FileSystem::get_node_by_name: Could not find a node with name `{name}` starting from node `{:#?}`", self.get_node_by_id(start_node)?))
+        Err(anyhow!(
+            "FileSystem::get_node_by_name: Could not find a node with name `{name}` starting from node `{:#?}`",
+            self.get_node_by_id(start_node)?
+        ))
     }
 }
 
@@ -499,7 +505,11 @@ mod tests {
         let expected = 95437;
         let actual = find_deletable_size(&log).unwrap();
 
-        assert_eq!(actual, expected, "Got `{actual}` when expecting `{expected}` from calling find_deletable_size on `{:#?}`", log)
+        assert_eq!(
+            actual, expected,
+            "Got `{actual}` when expecting `{expected}` from calling find_deletable_size on `{:#?}`",
+            log
+        )
     }
 
     #[test]

@@ -1,5 +1,8 @@
 use core::panic;
-use std::{collections::{HashMap, HashSet}, usize};
+use std::{
+    collections::{HashMap, HashSet},
+    usize,
+};
 
 use crate::util::point::Point3;
 
@@ -11,7 +14,6 @@ pub fn solve(input: &[&str]) -> String {
 }
 
 fn solve_part_1(n: usize, input: &[&str]) -> usize {
-    
     // parse input into points
     let points: Vec<Point3> = input
         .iter()
@@ -41,7 +43,7 @@ fn solve_part_1(n: usize, input: &[&str]) -> usize {
     let distances = {
         let mut distances = vec![];
         for i in 0..points.len() {
-            for j in i+1..points.len() {
+            for j in i + 1..points.len() {
                 let distance = points[i].euclidean_distance(points[j]);
                 distances.push((distance, &points[i], &points[j]));
             }
@@ -64,35 +66,28 @@ fn solve_part_1(n: usize, input: &[&str]) -> usize {
         }
 
         let (_d, a, b) = distances[i];
-        
-        if let Some(a_cid) = point_to_circuit.get(a) && let Some(b_cid) = point_to_circuit.get(b) {
 
+        if let Some(a_cid) = point_to_circuit.get(a)
+            && let Some(b_cid) = point_to_circuit.get(b)
+        {
             if *a_cid != *b_cid {
-
                 let to_merge = b_cid.clone();
                 let merged_cid = a_cid.clone();
-                
+
                 for (_, cid) in point_to_circuit.iter_mut() {
-                    if *cid == to_merge { 
+                    if *cid == to_merge {
                         *cid = merged_cid;
                     }
                 }
             }
-
         } else if let Some(cid) = point_to_circuit.get(a) {
-        
             point_to_circuit.insert(b, *cid);
-
         } else if let Some(cid) = point_to_circuit.get(b) {
-            
             point_to_circuit.insert(a, *cid);
-
         } else {
-            
             point_to_circuit.insert(a, next_circuit_id);
             point_to_circuit.insert(b, next_circuit_id);
             next_circuit_id += 1;
-
         }
     }
 
@@ -102,7 +97,10 @@ fn solve_part_1(n: usize, input: &[&str]) -> usize {
     let mut circuits: HashMap<usize, Vec<&Point3>> = HashMap::new();
 
     for (point, cid) in point_to_circuit {
-        circuits.entry(cid).and_modify(|points| (*points).push(point)).or_insert(vec![point]);
+        circuits
+            .entry(cid)
+            .and_modify(|points| (*points).push(point))
+            .or_insert(vec![point]);
     }
 
     // dbg!(&circuits);
@@ -124,7 +122,6 @@ fn solve_part_1(n: usize, input: &[&str]) -> usize {
 }
 
 fn solve_part_2(input: &[&str]) -> usize {
-    
     // parse input into points
     let points: Vec<Point3> = input
         .iter()
@@ -154,7 +151,7 @@ fn solve_part_2(input: &[&str]) -> usize {
     let distances = {
         let mut distances = vec![];
         for i in 0..points.len() {
-            for j in i+1..points.len() {
+            for j in i + 1..points.len() {
                 let distance = points[i].euclidean_distance(points[j]);
                 distances.push((distance, &points[i], &points[j]));
             }
@@ -174,44 +171,42 @@ fn solve_part_2(input: &[&str]) -> usize {
     let mut result = 0;
 
     for i in 0..distances.len() {
-
         let (_d, a, b) = distances[i];
-        
-        if let Some(a_cid) = point_to_circuit.get(a) && let Some(b_cid) = point_to_circuit.get(b) {
 
+        if let Some(a_cid) = point_to_circuit.get(a)
+            && let Some(b_cid) = point_to_circuit.get(b)
+        {
             if *a_cid != *b_cid {
-
                 let to_merge = b_cid.clone();
                 let merged_cid = a_cid.clone();
-                
+
                 for (_, cid) in point_to_circuit.iter_mut() {
-                    if *cid == to_merge { 
+                    if *cid == to_merge {
                         *cid = merged_cid;
                     }
                 }
 
                 if let Some(points_to_merge) = circuits.remove(&to_merge) {
-                    circuits.entry(merged_cid).and_modify(|points|(*points).extend(points_to_merge.into_iter()));
+                    circuits
+                        .entry(merged_cid)
+                        .and_modify(|points| (*points).extend(points_to_merge.into_iter()));
                 }
             }
-
         } else if let Some(cid) = point_to_circuit.get(a) {
-        
-            circuits.entry(*cid).and_modify(|points| { (*points).insert(b); });
+            circuits.entry(*cid).and_modify(|points| {
+                (*points).insert(b);
+            });
             point_to_circuit.insert(b, *cid);
-
         } else if let Some(cid) = point_to_circuit.get(b) {
-            
-            circuits.entry(*cid).and_modify(|points| { (*points).insert(a); });
+            circuits.entry(*cid).and_modify(|points| {
+                (*points).insert(a);
+            });
             point_to_circuit.insert(a, *cid);
-
         } else {
-            
             circuits.insert(next_circuit_id, HashSet::from([a, b]));
             point_to_circuit.insert(a, next_circuit_id);
             point_to_circuit.insert(b, next_circuit_id);
             next_circuit_id += 1;
-
         }
 
         // we found the last connection if there is one circuit that contains all the points

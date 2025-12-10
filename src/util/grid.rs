@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use std::cmp::{max, min};
 use std::fmt::Display;
 use std::ops::{Deref, DerefMut, Index, IndexMut};
@@ -442,7 +442,6 @@ mod tests {
 
     #[test]
     fn test_get_direction() {
-
         #[rustfmt::skip]
         let grid_values = [
             "abcde", 
@@ -506,13 +505,16 @@ mod tests {
         for (point, direction, expected) in cases {
             let actual = grid.get_direction(&point, direction);
 
-            assert_eq!(actual, expected.as_ref(), "Got {actual:?} when expecting {expected:?} from calling get_direction with point {point:?} and direction {direction:?}");
+            assert_eq!(
+                actual,
+                expected.as_ref(),
+                "Got {actual:?} when expecting {expected:?} from calling get_direction with point {point:?} and direction {direction:?}"
+            );
         }
     }
 
     #[test]
     fn test_rotate_clockwise() {
-
         #[rustfmt::skip]
         let mut grid = Grid::parse_char(&[
             "#.##..##.",
@@ -544,7 +546,6 @@ mod tests {
 
     #[test]
     fn test_rotate_counter_clockwise() {
-
         #[rustfmt::skip]
         let mut grid = Grid::parse_char(&[
             "#.##..##.",

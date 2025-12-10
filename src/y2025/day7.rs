@@ -14,7 +14,7 @@ fn simulate_beams(input: &[&str]) -> (u64, u64) {
     let mut beams = HashSet::new();
     let mut paths = vec![0; grid.width];
     let mut splits = 0;
-    
+
     for x in 0..grid.width {
         if grid[(x, 0)] == 'S' {
             beams.insert(x);
@@ -24,7 +24,6 @@ fn simulate_beams(input: &[&str]) -> (u64, u64) {
     }
 
     for y in 2..grid.height {
-
         let mut next_gen = HashSet::new();
         let mut next_paths = vec![0; grid.width];
 
@@ -46,7 +45,6 @@ fn simulate_beams(input: &[&str]) -> (u64, u64) {
     }
 
     (splits, paths.iter().sum())
-
 }
 
 #[cfg(test)]

@@ -90,7 +90,10 @@ fn parse_crane_data(input: &[&str]) -> (Vec<Vec<char>>, Vec<CraneInstruction>) {
                 return i;
             }
         }
-        panic!("parse_crane_data got to the end of it's input without finding a blank line. There must be a blank line between the stack data and the crane data. input was: {:#?}", input);
+        panic!(
+            "parse_crane_data got to the end of it's input without finding a blank line. There must be a blank line between the stack data and the crane data. input was: {:#?}",
+            input
+        );
     })();
 
     let stacks = parse_stacks(&input[..split_idx]);

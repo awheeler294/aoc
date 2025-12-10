@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use std::cmp::{max, min};
 use std::{collections::HashSet, fmt};
 
@@ -272,9 +272,17 @@ mod tests {
 
         for (a, b, expected) in cases {
             let actual = a.manhattan_distance(b);
-            assert_eq!(actual, expected, "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}", a, b);
+            assert_eq!(
+                actual, expected,
+                "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}",
+                a, b
+            );
             let actual = b.manhattan_distance(a);
-            assert_eq!(actual, expected, "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}", b, a);
+            assert_eq!(
+                actual, expected,
+                "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}",
+                b, a
+            );
         }
     }
 }

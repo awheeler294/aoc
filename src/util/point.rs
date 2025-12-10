@@ -1,6 +1,5 @@
-
-use std::ops::Add;
 use std::cmp::{max, min};
+use std::ops::Add;
 
 #[derive(Debug, PartialEq, Eq, Hash, Copy, Clone)]
 pub struct Point {
@@ -148,12 +147,10 @@ impl Point3 {
     }
 
     pub fn euclidean_distance(&self, other: Self) -> f32 {
-        (
-            (self.x as f32 - other.x as f32).powf(2.0) +
-            (self.y as f32 - other.y as f32).powf(2.0) +
-            (self.z as f32 - other.z as f32).powf(2.0)
-        )
-            .sqrt()
+        ((self.x as f32 - other.x as f32).powf(2.0)
+            + (self.y as f32 - other.y as f32).powf(2.0)
+            + (self.z as f32 - other.z as f32).powf(2.0))
+        .sqrt()
     }
 }
 
@@ -234,9 +231,17 @@ mod tests {
         //             Point { x: 1,  y: 15 },
         for (a, b, expected) in cases {
             let actual = a.manhattan_distance(b);
-            assert_eq!(actual, expected, "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}", a, b);
+            assert_eq!(
+                actual, expected,
+                "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}",
+                a, b
+            );
             let actual = b.manhattan_distance(a);
-            assert_eq!(actual, expected, "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}", b, a);
+            assert_eq!(
+                actual, expected,
+                "Got {actual} when expecting {expected} from calling manhattan_distance on {:#?} and {:#?}",
+                b, a
+            );
         }
     }
 }

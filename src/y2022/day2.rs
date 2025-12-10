@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 
 const WINNING_POINTS: u32 = 6;
 const DRAW_POINTS: u32 = 3;

@@ -1,8 +1,7 @@
+use std::cmp::{max, min};
 use std::collections::HashSet;
-use std::cmp::{min, max};
 
 use crate::util::grid::Point;
-
 
 pub fn solve(input: &[&str]) -> String {
     let part_1 = solve_part_1(input);
@@ -14,12 +13,17 @@ pub fn solve(input: &[&str]) -> String {
 fn solve_part_1(input: &[&str]) -> usize {
     let points = input
         .into_iter()
-        .map(|line|{
-            let mut nums = line
-                .split(',')
-                .map(|n| n.parse::<usize>().unwrap_or_else(|e| panic!("could not parse number from {}: {}", line, e)));
-            let x = nums.next().unwrap_or_else(|| panic!("could not find x value in {}", line));
-            let y = nums.next().unwrap_or_else(|| panic!("could not find y value in {}", line));
+        .map(|line| {
+            let mut nums = line.split(',').map(|n| {
+                n.parse::<usize>()
+                    .unwrap_or_else(|e| panic!("could not parse number from {}: {}", line, e))
+            });
+            let x = nums
+                .next()
+                .unwrap_or_else(|| panic!("could not find x value in {}", line));
+            let y = nums
+                .next()
+                .unwrap_or_else(|| panic!("could not find y value in {}", line));
 
             Point::new(x, y)
         })
@@ -29,7 +33,7 @@ fn solve_part_1(input: &[&str]) -> usize {
     // let mut max_points = None;
 
     for i in 0..points.len() {
-        for j in i+1..points.len() {
+        for j in i + 1..points.len() {
             let a = points[i];
             let b = points[j];
 
@@ -40,35 +44,36 @@ fn solve_part_1(input: &[&str]) -> usize {
 
     // dbg!(max_points);
 
-
     max_area
-    
 }
 
 fn solve_part_2(input: &[&str]) -> usize {
     let points = input
         .into_iter()
-        .map(|line|{
-            let mut nums = line
-                .split(',')
-                .map(|n| n.parse::<usize>().unwrap_or_else(|e| panic!("could not parse number from {}: {}", line, e)));
-            let x = nums.next().unwrap_or_else(|| panic!("could not find x value in {}", line));
-            let y = nums.next().unwrap_or_else(|| panic!("could not find y value in {}", line));
+        .map(|line| {
+            let mut nums = line.split(',').map(|n| {
+                n.parse::<usize>()
+                    .unwrap_or_else(|e| panic!("could not parse number from {}: {}", line, e))
+            });
+            let x = nums
+                .next()
+                .unwrap_or_else(|| panic!("could not find x value in {}", line));
+            let y = nums
+                .next()
+                .unwrap_or_else(|| panic!("could not find y value in {}", line));
 
             Point::new(x, y)
         })
         .collect::<Vec<_>>();
 
-
     // let width = 14;
     // let height = 9;
     // let mut grid = Grid::new(width, height, '.');
 
-
     let edges = {
         let mut edges: HashSet<Point> = HashSet::new();
         for i in 0..points.len() {
-            let j = if i+1 < points.len() { i + 1 } else { 0 };
+            let j = if i + 1 < points.len() { i + 1 } else { 0 };
             let a = points[i];
             let b = points[j];
 
@@ -96,15 +101,15 @@ fn solve_part_2(input: &[&str]) -> usize {
     // let mut max_points = None;
 
     for i in 0..points.len() {
-        for j in i+1..points.len() {
+        for j in i + 1..points.len() {
             let a = points[i];
             let b = points[j];
 
             let area = (a.x.abs_diff(b.x) + 1) * (a.y.abs_diff(b.y) + 1);
-            
+
             if area > max_area {
-                let c = Point{ x: a.x, y: b.y };
-                let d = Point{ x: b.x, y: a.y };
+                let c = Point { x: a.x, y: b.y };
+                let d = Point { x: b.x, y: a.y };
 
                 // let mut g = grid.clone();
                 // g[&a] = 'a';
@@ -115,43 +120,44 @@ fn solve_part_2(input: &[&str]) -> usize {
                 // dbg!(g);
                 // dbg!(area);
 
-                if (edges.contains(&c) || is_inside(&c, &points)) && (edges.contains(&d) || is_inside(&d, &points)) {
-                    
+                if (edges.contains(&c) || is_inside(&c, &points))
+                    && (edges.contains(&d) || is_inside(&d, &points))
+                {
                     let mut is_valid = true;
-                    
+
                     if is_valid {
                         for y in min(a.y, c.y)..max(a.y, c.y) {
-                            let p = Point{ x: a.x, y: y };
+                            let p = Point { x: a.x, y: y };
                             if !edges.contains(&p) && !is_inside(&p, &points) {
                                 is_valid = false;
                                 break;
                             }
                         }
                     }
-                    
+
                     if is_valid {
                         for x in min(c.x, b.x)..max(c.x, b.x) {
-                            let p = Point{ x: x, y: b.y };
+                            let p = Point { x: x, y: b.y };
                             if !edges.contains(&p) && !is_inside(&p, &points) {
                                 is_valid = false;
                                 break;
                             }
                         }
                     }
-                    
+
                     if is_valid {
                         for y in min(b.y, d.y)..max(b.y, d.y) {
-                            let p = Point{ x: b.x, y: y };
+                            let p = Point { x: b.x, y: y };
                             if !edges.contains(&p) && !is_inside(&p, &points) {
                                 is_valid = false;
                                 break;
                             }
                         }
                     }
-                    
+
                     if is_valid {
                         for x in min(d.x, a.x)..max(d.x, a.x) {
-                            let p = Point{ x: x, y: d.y };
+                            let p = Point { x: x, y: d.y };
                             if !edges.contains(&p) && !is_inside(&p, &points) {
                                 is_valid = false;
                                 break;
@@ -169,7 +175,7 @@ fn solve_part_2(input: &[&str]) -> usize {
     }
 
     // dbg!(&max_points);
-    
+
     // ################# visulaization ################
 
     // {
@@ -239,7 +245,6 @@ fn solve_part_2(input: &[&str]) -> usize {
 
     // ################# visulaization ################
 
-
     max_area
 }
 
@@ -264,7 +269,8 @@ fn is_inside(p: &Point, polygon: &[Point]) -> bool {
                 // Check if the point is to the left of the maximum x coordinate of the edge
                 if x <= max(p1.x, p2.x) {
                     // Calculate the x-intersection of the line connecting the point to the edge
-                    let x_intersection = (y.abs_diff(p1.y)) * (p2.x.abs_diff(p1.x)) / (p2.y.abs_diff(p1.y)) + p1.x;
+                    let x_intersection =
+                        (y.abs_diff(p1.y)) * (p2.x.abs_diff(p1.x)) / (p2.y.abs_diff(p1.y)) + p1.x;
 
                     // Check if the point is on the same line as the edge or to the left of the x-intersection
                     if p1.x == p2.x || x <= x_intersection {

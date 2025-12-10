@@ -299,7 +299,11 @@ mod tests {
 
         for (sensor, y, expected) in cases {
             let actual = sensor.get_x_endpoint(y).unwrap();
-            assert_eq!(actual, expected, "\n Got `{actual}` when expecting `{expected}` from calling get_x_endpoint on {:#?} with y = `{:#?}`", sensor, y);
+            assert_eq!(
+                actual, expected,
+                "\n Got `{actual}` when expecting `{expected}` from calling get_x_endpoint on {:#?} with y = `{:#?}`",
+                sensor, y
+            );
         }
     }
 
