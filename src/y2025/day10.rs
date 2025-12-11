@@ -73,7 +73,10 @@ impl Machine {
             .map(|i| Int::fresh_const(&format!("button_{i}")))
             .collect::<Vec<_>>();
 
-        button_presses.iter().for_each(|b| optimezer.assert(&b.ge(0)));
+        button_presses
+            .iter()
+            .for_each(|b| optimezer.assert(&b.ge(0)));
+
         for (pos, &target) in joltages.iter().enumerate() {
             let mut terms = Vec::new();
 
